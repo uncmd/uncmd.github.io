@@ -1,0 +1,15 @@
+# custom
+.DS_Store
+Thumbs.db
+temp/
+yarn.lock
+package-lock.json
+
+# dev
+node_modules/
+*.log
+
+# dist
+public/
+db.json
+.deploy*/
