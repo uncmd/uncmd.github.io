@@ -105,6 +105,4 @@ theme: yun
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/uncmd/uncmd.github.io
-  branch: master
+  type: ''
