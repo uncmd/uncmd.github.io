@@ -7,11 +7,15 @@ categories:
   - 那些年立的Flag
 ---
 
-# 运动健身
+> 健身是一辈子的事业，对于久坐的程序员来说更是如此。
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/timg.jpg)
+
+<!-- more -->
 
 ## 为什么要健身
 
-> 健身是一辈子的事业，对于久坐的程序员来说更是如此。
+> 健身不仅可以增强体魄，还能减压
 
 ### 一、增加基础代谢率
 
