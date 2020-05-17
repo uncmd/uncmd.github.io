@@ -12,4 +12,4 @@ date: 2020-05-15 22:59:09
 
 ------
 
-![](/images/avatar.jpg)
+![logo](/images/logo.jpg)
