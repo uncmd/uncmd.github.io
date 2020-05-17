@@ -9,6 +9,10 @@ categories:
   - 那些年立的Flag
 ---
 
+本书针对CLR和.NET Framework 进行深入、全面的探讨，并结合实例介绍了如何利用它们进行设计、开发和调试。
+
+<!-- more -->
+
 ## 第一章 CLR的执行模型
 
 ### CLR是公共语言运行时(Common Language Runtime)

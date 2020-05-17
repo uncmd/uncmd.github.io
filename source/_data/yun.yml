@@ -14,7 +14,7 @@ colors:
 
 # Favicon
 # ---------------
-favicon: /yun.svg
+favicon: /favicon.png
 
 # ---------------------------------------------------------------
 # Sidebar Settings
@@ -29,16 +29,10 @@ toc:
   list_number: true
   max_depth: 6
   min_depth: 1
-  # placeholder: 很遗憾，咱没写啥目录
+  placeholder: 很遗憾，咱没写啥目录
 
 # Social Links.
 social:
-  - name: RSS
-    # set rss in your root config
-    # https://github.com/hexojs/hexo-generator-feed
-    link: /atom.xml # config.feed.path
-    icon: icon-rss-line
-    color: orange
   - name: QQ
     # https://isux.tencent.com/wp-content/uploads/2016/05/20160512101222609.pdf
     link: https://wpa.qq.com/msgrd?v=3&uin=1951765200&site=qq&menu=yes
@@ -61,7 +55,7 @@ social:
 pages:
   - name: 我的相册
     url: /albums/
-    icon: icon-genderless-line
+    icon: icon-gallery-line
     color: dodgerblue
 
 albums:
@@ -85,15 +79,19 @@ avatar:
 # main menu navigation
 menu:
   home:
+    title: 主页
     path: /
     icon: icon-home-4-line
   archives:
+    title: 归档
     path: /archives
     icon: icon-archive-line
   tags:
+    title: 标签
     path: /tags
     icon: icon-price-tag-3-line
   categories:
+    title: 分类
     path: /categories
     icon: icon-folder-2-line
   custom:
@@ -279,12 +277,12 @@ fireworks:
 
 # https://github.com/qrohlf/trianglify
 trianglify:
-  enable: false
+  enable: true
   cell_size: 75
   width: 800
   height: 600
   palette: '["YlGnBu", "GnBu", "Purples", "Blues"]'
-  opacity: 0.5
+  opacity: 0.6
 
 cursor:
   enable: false
@@ -350,7 +348,7 @@ creative_commons:
 # Dependencies: https://github.com/hexojs/hexo-deployer-git
 post_edit:
   enable: true
-  url: https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name # Link for view source.
+  url: https://github.com/uncmd/uncmd.github.io/tree/hexo/source # Link for view source.
 
 # Footer Settings
 # ---------------
@@ -377,7 +375,7 @@ footer:
     # icp: 苏ICP备xxxxxxxx号
 
   live_time:
-    enable: false
+    enable: true
     prefix: 本博客已萌萌哒地运行
     suffix: (●'◡'●)
     start_time: "2020-05-12T00:00:00"
@@ -395,8 +393,8 @@ post_meta:
 
 # notice pin board
 notice:
-  enable: false
-  content: Thanks for watching my blog.
+  enable: true
+  content: 欢迎来到我的个人博客.
 
 # third party
 # ----------------
@@ -443,21 +441,21 @@ github_issues:
 # More info available at https://valine.js.org
 # extend: https://github.com/DesertsP/Valine-Admin
 valine:
-  enable: false
-  appId: # your leancloud application appid
-  appKey: # your leancloud application appkey
-  placeholder: Just go go # comment box placeholder
+  enable: true
+  appId: 0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz # your leancloud application appid
+  appKey: Kel97lPyFOFKrs3lN2MefL0P # your leancloud application appkey
+  placeholder: 快来评论耶✌ # comment box placeholder
   avatar: # gravatar style
-  # meta:
-  #   - nick
-  #   - mail
-  #   - link
+    meta:
+      - 昵称
+      - 邮箱
+      - 网址
   pageSize: 10 # pagination size
-  # lang: zh-CN
-  visitor: false
+  lang: zh-CN
+  visitor: true
   visitor_index: false
   highlight: true
-  recordIP: false
+  recordIP: true
   # serverURLs:
   # Emoji See: https://valine.js.org/emoji.html
   # emojiCDN: //i0.hdslb.com/bfs/emote/
@@ -519,15 +517,15 @@ engine_search:
 
 # https://github.com/wzpan/hexo-generator-search
 local_search:
-  enable: true
+  enable: false
   src: /js/search/local-search.js
 
 # https://github.com/oncletom/hexo-algolia
 algolia_search:
-  enable: false
+  enable: true
   src: /js/search/algolia-search.js
   hits:
-    per_page: 8 # the number of search results per page
+    per_page: 10 # the number of search results per page
 
 # Ads
 # ---------------
