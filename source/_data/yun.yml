@@ -277,7 +277,7 @@ fireworks:
 
 # https://github.com/qrohlf/trianglify
 trianglify:
-  enable: true
+  enable: false
   cell_size: 75
   width: 800
   height: 600
@@ -393,7 +393,7 @@ post_meta:
 
 # notice pin board
 notice:
-  enable: true
+  enable: false
   content: 欢迎来到我的个人博客.
 
 # third party
