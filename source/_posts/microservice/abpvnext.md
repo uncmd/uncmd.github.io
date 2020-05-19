@@ -7,6 +7,14 @@ categories:
   - 微服务
 ---
 
+> ABP是用于创建现代Web应用程序的完整体系结构和强大的基础架构！遵循最佳实践和约定，为您提供SOLID开发经验。
+
+> 官网：https://abp.io/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/abp-logo-light.svg)
+
+<!-- more -->
+
 ## AbpVNext介绍
 
 ABP是一个完整的架构和强大的基础架构，可以创建现代Web应用程序 遵循最佳实践和惯例，为您提供SOLID开发体验。

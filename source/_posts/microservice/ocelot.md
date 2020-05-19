@@ -1,11 +1,19 @@
 ---
-title: Ocelot
+title: .NET Core开源API网关 – Ocelot
 date: 2020-05-16 23:41:40
 tags:
   - 网关
 categories:
   - 微服务
 ---
+
+> Ocelot是一个.NET API网关。该项目面向使用.NET运行微型服务/面向服务的体系结构的人员，这些体系结构需要统一的系统入口点。但是，它可以与任何使用HTTP并在ASP.NET Core支持的平台上运行的东西一起使用。
+
+> 官网文档：https://ocelot.readthedocs.io/en/latest/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/ocelot.png)
+
+<!-- more -->
 
 ## 一、什么是API网关
 

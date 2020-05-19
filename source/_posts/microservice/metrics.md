@@ -1,11 +1,19 @@
 ---
-title: AppMetrics
+title: App.Metrics+InfluxDB+Grafana实现统一性能监控
 date: 2020-05-16 23:41:40
 tags:
   - 性能监控
 categories:
   - 微服务
 ---
+
+> App.Metrics是一款开源的支持.NET Core的监控插件。
+
+> 官网文档：https://www.app-metrics.io/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/appmetrics.png)
+
+<!-- more -->
 
 ## 基于 AppMetrics 实现统一性能监控
 

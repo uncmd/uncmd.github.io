@@ -1,11 +1,19 @@
 ---
-title: ABP框架与微服务
+title: ASP.NET Boilerplate应用与实践
 date: 2020-05-16 23:41:40
 tags:
   - ABP
 categories:
   - 微服务
 ---
+
+> ASP.NET Boilerplate是一个通用应用程序框架，专门为新的现代Web应用程序设计。它使用已经熟悉的工具并围绕它们实施最佳实践，以为您提供SOLID开发经验。
+
+> 官网：https://aspnetboilerplate.com/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/abp-logo-long.png)
+
+<!-- more -->
 
 ## 如何获取客户端真实IP，而不是代理IP
 

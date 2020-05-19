@@ -7,6 +7,14 @@ categories:
   - 微服务
 ---
 
+> Jenkins是开源CI&CD软件领导者， 提供超过1000个插件来支持构建、部署、自动化， 满足任何项目的需要。
+
+> 官网文档：https://www.jenkins.io/zh/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/jenkins.jpg)
+
+<!-- more -->
+
 ## Jenkins介绍
 
 Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。

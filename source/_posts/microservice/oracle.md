@@ -1,5 +1,5 @@
 ---
-title: Oracle
+title: Oracle数据库
 date: 2020-05-16 23:41:40
 tags:
   - 数据库
@@ -7,6 +7,10 @@ tags:
 categories:
   - 微服务
 ---
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/oracle.jpg)
+
+<!-- more -->
 
 ## Oracle介绍
 
@@ -20,7 +24,7 @@ Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的�
 -- 查询锁包
 SELECT 'alter system kill session ' || '''' || sid || ',' || serial# || '''immediate;', a.*
   FROM dba_ddl_locks a, v$session ss
- WHERE a.name LIKE '%cux_erp_qms_interface_pkg%'
+ WHERE a.name LIKE '%包名%'
    AND a.session_id = ss.sid;
 
 --查看被锁的表
@@ -51,6 +55,21 @@ from v$sqlarea a, v$session s, v$locked_object l
 where l.session_id = s.sid 
    and s.prev_sql_addr = a.address 
 order by sid, s.serial#;
+
+-- --批量解锁语句生成
+SELECT A.OBJECT_NAME,
+       B.SESSION_ID,
+       C.SERIAL#,
+       'alter system kill session ''' || B.SESSION_ID || ',' || C.SERIAL# ||
+       '''; ' AS A,
+       C.PROGRAM,
+       C.USERNAME,
+       C.COMMAND,
+       C.MACHINE,
+       C.LOCKWAIT
+  FROM ALL_OBJECTS A, V$LOCKED_OBJECT B, V$SESSION C
+ WHERE A.OBJECT_ID = B.OBJECT_ID
+   AND C.SID = B.SESSION_ID;
 ```
 
 ### Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列
@@ -92,3 +111,51 @@ CONNECT BY REGEXP_SUBSTR('SMITH,ALLEN,WARD,JONES', '[^,]+', 1, LEVEL) IS NOT NUL
 )
 
 ```
+
+### Oracle杀掉进程的三种方式
+
+1、ALTER SYSTEM KILL SESSION
+
+关于KILL SESSION Clause ，如下官方文档描述所示，alter system kill session实际上不是真正的杀死会话，它只是将会话标记为终止。等待PMON进程来清除会话。
+
+```sql
+ALTER SYSTEM KILL SESSION 'sid,serial#'; --终止会话，不释放资源
+
+alter system kill session 'sid serial#' immediate --终止会话，释放资源
+```
+
+2、ALTER SYSTEM DISCONNECT SESSION
+
+ALTER SYSTEM DISCONNECT SESSION 杀掉专用服务器(DEDICATED SERVER)或共享服务器的连接会话，它等价于从操作系统杀掉进程。它有两个选项POST_TRANSACTION和IMMEDIATE， 其中POST_TRANSACTION表示等待事务完成后断开会话，IMMEDIATE表示中断会话，立即回滚事务。
+
+```sql
+ALTER SYSTEM DISCONNECT SESSION 'sid,serial#' POST_TRANSACTION;
+
+ALTER SYSTEM DISCONNECT SESSION 'sid,serial#' IMMEDIATE;
+```
+
+3、KILL -9 SPID （Linux） 或 orakill ORACLE_SID spid　（Windows）
+
+可以使用下面SQL语句找到对应的操作系统进程SPID，然后杀掉。
+
+```sql
+SELECT s.inst_id,
+       s.sid,
+       s.serial#,
+       p.spid,
+       s.username,
+       s.program
+FROM   gv$session s
+       JOIN gv$process p ON p.addr = s.paddr AND p.inst_id = s.inst_id
+WHERE  s.type != 'BACKGROUND';
+```
+
+> 杀掉操作系统进程是一件危险的事情，尤其不要误杀。所以在执行前，一定要谨慎确认。
+
+在数据库如果要彻底杀掉一个会话，尤其是大事务会话，最好是使用ALTER SYSTEM DISCONNECT SESSION IMMEDIATE或使用下面步骤：
+
+1、首先在操作系统级别Kill掉进程。
+
+2、在数据库内部KILL SESSION
+
+或者反过来亦可。这样可以快速终止进程，释放资源。

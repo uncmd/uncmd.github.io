@@ -7,9 +7,15 @@ categories:
   - 微服务
 ---
 
-## EntityFramworkCore介绍
+> Entity Framework (EF) Core 是轻量化、可扩展、开源和跨平台版的常用 Entity Framework 数据访问技术。
 
-Entity Framework (EF) Core 是轻量化、可扩展、开源和跨平台版的常用 Entity Framework 数据访问技术。
+> 官网文档：https://docs.microsoft.com/zh-cn/ef/core/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/efcore.jpg)
+
+<!-- more -->
+
+## EntityFramworkCore介绍
 
 EF Core 可用作对象关系映射程序 (O/RM)，以便于 .NET 开发人员能够使用 .NET 对象来处理数据库，这样就不必经常编写大部分数据访问代码了。
 

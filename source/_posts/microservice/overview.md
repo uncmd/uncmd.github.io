@@ -7,11 +7,11 @@ categories:
   - 微服务
 ---
 
-## 微服务概览图
-
-QMS 微服务系统是以 ABP 作为后端服务的现代化微服务框架
+> 本微服务系统是以 ABP 作为后端服务的现代化微服务框架
 
 ![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/MicroService.png)
+
+<!-- more -->
 
 ## 学习资料
 

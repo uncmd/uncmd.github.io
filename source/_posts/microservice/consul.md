@@ -7,6 +7,14 @@ categories:
   - 微服务
 ---
 
+> 自动化网络配置，发现服务并启用跨任何云或运行时的安全连接。
+
+> 官网：https://www.consul.io/
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/consul.jpg)
+
+<!-- more -->
+
 ## Consul介绍
 
 Consul是一种服务发现和配置工具。Consul具有分布式，高可用性和极高的可扩展性。
