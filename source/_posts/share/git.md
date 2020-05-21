@@ -29,13 +29,17 @@ LearnGitBranching是一个git仓库可视化工具，沙箱以及一系列教育
 
 您可以在LearnGitBranching（LGB）中输入各种命令-处理命令时，附近的提交树将动态更新以反映每个命令的效果：
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git.gif)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git.gif)_LearnGitBranching 游戏演示_
 
-### git commit
+## 本地仓库
+
+### 基础篇
+
+#### git commit
 
 用 `git commit` 来创建新的提交记录
 
-### git branch
+#### git branch
 
 > 早建分支，多用分支
 
@@ -43,11 +47,11 @@ LearnGitBranching是一个git仓库可视化工具，沙箱以及一系列教育
 
 如果你想创建一个新的分支同时切换到新创建的分支的话，可以通过 `git checkout -b <your-branch-name>` 来实现
 
-### git merge
+#### git merge
 
 使用 `git merge <分支名>` 把分支合并到当前分支
 
-### git rebase
+#### git rebase
 
 Rebase 实际上就是取出一系列的提交记录，“复制”它们，然后在另外一个地方逐个的放下去。
 
@@ -55,7 +59,9 @@ Rebase 的优势就是可以创造更线性的提交历史，这听上去有些�
 
 使用 `git rebase <分支名>` 把当前分支重新指向指定的分支
 
-### 分离 HEAD
+### 高级篇
+
+#### 分离 HEAD
 
 HEAD 是一个对当前检出记录的符号引用 —— 也就是指向你正在其基础上进行工作的提交记录。
 
@@ -77,7 +83,7 @@ HEAD -> C1
 
 使用 `git checkout <提交记录哈希值>` 分离HEAD
 
-### 相对引用（^）
+#### 相对引用（^）
 
 通过指定提交记录哈希值的方式在 Git 中移动不太方便。在实际应用时，并没有像本程序中这么漂亮的可视化提交树供你参考，所以你就不得不用 `git log` 来查查看提交记录的哈希值。
 
@@ -121,7 +127,7 @@ git branch -f master HEAD~3
 
 上面的命令会将 master 分支强制指向 HEAD 的第 3 级父提交。
 
-### 撤销变更
+#### 撤销变更
 
 在 Git 里撤销变更的方法很多。和提交一样，撤销变更由底层部分（暂存区的独立文件或者片段）和上层部分（变更到底是通过哪种方式被撤销的）组成。我们这个应用主要关注的是后者。
 
@@ -135,7 +141,7 @@ git branch -f master HEAD~3
 
 虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gitrevert.jpg)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gitrevert.jpg)_`git revert HEAD`_
 
 上图一开始 `master` 指向 C2 ，执行 `git revert HEAD` 命令后指向C2'，在我们要撤销的提交记录后面居然多了一个新提交！
 
@@ -143,7 +149,9 @@ git branch -f master HEAD~3
 
 revert 之后就可以把你的更改推送到远程仓库与别人分享啦。
 
-### Git Cherry-pick
+### 移动提交记录
+
+#### Git Cherry-pick
 
 到现在我们已经学习了 Git 的基础知识 —— 提交、分支以及在提交树上移动。 这些概念涵盖了 Git 90% 的功能，同样也足够满足开发者的日常需求
 
@@ -161,11 +169,11 @@ revert 之后就可以把你的更改推送到远程仓库与别人分享啦。
 git cherry-pick C2 C4
 ```
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-cherry-pick.gif)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-cherry-pick.gif)_`git cherry-pick C2 C4`_
 
 我们只需要提交记录 C2 和 C4，所以 Git 就将被它们抓过来放到当前分支下了。 就是这么简单!
 
-### 交互式 rebase
+#### 交互式 rebase
 
 当你知道你所需要的提交记录（并且还知道这些提交记录的哈希值）时, 用 cherry-pick 再好不过了 —— 没有比这更简单的方式了。
 
@@ -189,7 +197,9 @@ git cherry-pick C2 C4
 git rebase -i HEAD~4
 ```
 
-### 只取一个提交记录
+### 杂项
+
+#### 只取一个提交记录
 
 来看一个在开发中经常会遇到的情况：我正在解决某个特别棘手的 Bug，为了便于调试而在代码中添加了一些调试命令并向控制台打印了一些信息。
 
@@ -205,7 +215,7 @@ git rebase -i HEAD~4
 
 来达到目的。
 
-### 提交的技巧 #1
+#### 提交的技巧 #1
 
 接下来这种情况也是很常见的：你之前在 `newImage `分支上进行了一次提交，然后又基于它创建了 `caption` 分支，然后又提交了一次。
 
@@ -239,7 +249,7 @@ $ git rebase -i HEAD~2
 $ git branch -f master C3''
 ```
 
-### 提交的技巧 #2
+#### 提交的技巧 #2
 
 我们可以使用 rebase -i 对提交记录进行重新排序。只要把我们想要的提交记录挪到最前端，我们就可以很轻松的用 --amend 修改它，然后把它们重新排成我们想要的顺序。
 
@@ -259,4 +269,128 @@ $ git commit --amend
 $ git cherry-pick C3
 ```
 
-### Git Tag
+#### Git Tag
+
+分支很容易被人为移动，并且当有新的提交时，它也会移动。分支很容易被改变，大部分分支还只是临时的，并且还一直在变。
+
+你可能会问了：有没有什么可以永远指向某个提交记录的标识呢，比如软件发布新的大版本，或者是修正一些重要的 Bug 或是增加了某些新特性，有没有比分支更好的可以永远指向这些提交的方法呢？
+
+当然有了！Git 的 tag 就是干这个用的啊，它们可以（在某种程度上 —— 因为标签可以被删除后重新在另外一个位置创建同名的标签）永久地将某个特定的提交命名为里程碑，然后就可以像分支一样引用了。
+
+更难得的是，它们并不会随着新的提交而移动。你也不能检出到某个标签上面进行修改提交，它就像是提交树上的一个锚点，标识了某个特定的位置。
+
+`git tag v1 C1` 命令将这个标签命名为 v1，并且明确地让它指向提交记录 C1，如果你不指定提交记录，Git 会用 HEAD 所指向的位置。
+
+#### Git Describe
+
+由于标签在代码库中起着“锚点”的作用，Git 还为此专门设计了一个命令用来描述离你最近的锚点（也就是标签），它就是 `git describe`！
+
+`Git Describe` 能帮你在提交历史中移动了多次以后找到方向；当你用 `git bisect`（一个查找产生 Bug 的提交记录的指令）找到某个提交记录时，或者是当你坐在你那刚刚度假回来的同事的电脑前时， 可能会用到这个命令。
+
+`git describe` 的​​语法是：
+
+`git describe <ref>`
+
+`<ref>` 可以是任何能被 Git 识别成提交记录的引用，如果你没有指定的话，Git 会以你目前所检出的位置（`HEAD`）。
+
+它输出的结果是这样的：
+
+`<tag>_<numCommits>_g<hash>`
+
+`tag` 表示的是离 `ref` 最近的标签， `numCommits `是表示这个 `ref` 与 `tag` 相差有多少个提交记录， `hash` 表示的是你所给定的 `ref` 所表示的提交记录哈希值的前几位。
+
+当 `ref` 提交记录上有某个标签时，则只输出标签名称。
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gitdescribe.jpg)
+
+如上图
+
+`git describe master` 会输出：
+
+`v1_2_gC2`
+
+`git describe side` 会输出：
+
+`v2_1_gC4`
+
+### 高级话题
+
+#### 两个父节点
+
+操作符 `^` 与 `~` 符一样，后面也可以跟一个数字。
+
+但是该操作符后面的数字与 `~` 后面的不同，并不是用来指定向上返回几代，而是指定合并提交记录的某个父提交。还记得前面提到过的一个合并提交有两个父提交吧，所以遇到这样的节点时该选择哪条路径就不是很清晰了。
+
+Git 默认选择合并提交的“第一个”父提交，在操作符 `^` 后跟一个数字可以改变这一默认行为。
+
+举个例子，这里有一个合并提交记录。如果不加数字修改符直接检出 `master^`，会回到第一个父提交记录。
+
+```bash
+git checkout master^
+```
+
+(在我们的图示中，第一个父提交记录是指合并提交记录正上方的那个提交记录。)
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git2.jpg)_`git checkout master^`_
+
+这正是我们都已经习惯的方法。
+
+现在来试试选择另一个父提交……
+
+```bash
+git checkout master^2
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git3.jpg)_`git checkout master^2`_
+
+看见了吧？我们回到了另外一个父提交上。
+
+更厉害的是，这些操作符还支持链式操作！试一下这个：
+
+```bash
+git checkout HEAD~^2~2
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git4.jpg)_`git checkout HEAD~^2~2`_
+
+#### 纠缠不清的分支
+
+现在我们的 master 分支是比 one、two 和 three 要多几个提交。出于某种原因，我们需要把 master 分支上最近的几次提交做不同的调整后，分别添加到各个的分支上。
+
+one 需要重新排序并删除 C5，two 仅需要重排排序，而 three 只需要提交一次，按顺序执行以下命令。
+
+```bash
+$ git checkout one
+
+$ git cherry-pick C4 C3 C2
+
+$ git checkout two
+
+$ git cherry-pick C5 C4 C3 C2
+
+$ git branch -f three C2
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-level3.gif)
+
+## 远程仓库
+
+远程仓库并不复杂, 在如今的云计算盛行的世界很容易把远程仓库想象成一个富有魔力的东西, 但实际上它们只是你的仓库在另个一台计算机上的拷贝。你可以通过因特网与这台计算机通信 —— 也就是增加或是获取提交记录
+
+话虽如此, 远程仓库却有一系列强大的特性
+
+首先也是最重要的的点, 远程仓库是一个强大的备份。本地仓库也有恢复文件到指定版本的能力, 但所有的信息都是保存在本地的。有了远程仓库以后，即使丢失了本地所有数据, 你仍可以通过远程仓库拿回你丢失的数据。
+
+还有就是, 远程让代码社交化了! 既然你的项目被托管到别的地方了, 你的朋友可以更容易地为你的项目做贡献(或者拉取最新的变更)
+
+现在用网站来对远程仓库进行可视化操作变得越发流行了(像 [GitHub](https://github.com/) 或 [Gitee](https://gitee.com/)), 但远程仓库永远是这些工具的顶梁柱, 因此理解其概念非常的重要!
+
+### Push & Pull —— Git 远程仓库！
+
+#### git clone
+
+`git clone` 命令的作用是在本地创建一个远程仓库的拷贝（比如从 github.com）
+
+#### 远程分支
+
+### 关于 origin 和它的周边 —— Git 远程仓库高级操作
