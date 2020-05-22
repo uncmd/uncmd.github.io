@@ -1,6 +1,6 @@
 ---
-title: AJAX
-date: 2020-05-16 23:41:40
+title: AJAX 教程
+date: 2020-04-10 23:41:40
 tags:
   - AJAX
   - 笔记

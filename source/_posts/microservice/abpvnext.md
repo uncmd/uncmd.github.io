@@ -11,7 +11,7 @@ categories:
 
 > 官网：https://abp.io/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/abp-logo-light.svg)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/abp-logo-dark.svg)
 
 <!-- more -->
 
@@ -337,3 +337,4 @@ public static IServiceCollection AddHttpClientProxy(
 
 一般注册整个程序集，实现了IRemoteService接口的服务都会被注册为远程方法。
 最佳实践是在*.HttpApi.Client项目中注册*.Application.Contracts程序集，其它微服务只需要依赖*.HttpApi.Client，执行远程端点调用和本地调用一样简单。
+

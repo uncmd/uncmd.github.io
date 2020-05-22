@@ -1,6 +1,6 @@
 ---
-title: Jenkins
-date: 2020-05-16 23:41:40
+title: Jenkins - 持续集成引擎
+date: 2020-05-14 23:41:40
 tags:
   - CI/CD
 categories:

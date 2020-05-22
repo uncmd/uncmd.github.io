@@ -126,3 +126,5 @@ npm install hexo-render-pug hexo-renderer-stylus
 
 `themes-yun`会将自定义配置与默认配置进行合并，因此你只需要在 `yun.yml` 文件中自定义你需要的配置即可，其余仍将自动采用默认配置。
 
+### 用到的插件
+

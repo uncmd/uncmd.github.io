@@ -1,6 +1,6 @@
 ---
 title: RibbitMQ
-date: 2020-05-16 23:41:40
+date: 2020-05-6 23:12:40
 tags:
   - MQ
 categories:
