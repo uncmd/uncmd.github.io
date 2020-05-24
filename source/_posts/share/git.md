@@ -11,7 +11,7 @@ categories:
 
 > 官网地址：https://git-scm.com/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git.jpg)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git.jpg)
 
 <!-- more -->
 
@@ -29,7 +29,7 @@ LearnGitBranching是一个git仓库可视化工具，沙箱以及一系列教育
 
 您可以在LearnGitBranching（LGB）中输入各种命令-处理命令时，附近的提交树将动态更新以反映每个命令的效果：
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git.gif)_LearnGitBranching 游戏演示_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git.gif)_LearnGitBranching 游戏演示_
 
 ## 本地仓库
 
@@ -141,7 +141,7 @@ git branch -f master HEAD~3
 
 虽然在你的本地分支中使用 git reset 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gitrevert.jpg)_`git revert HEAD`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/gitrevert.jpg)_`git revert HEAD`_
 
 上图一开始 `master` 指向 C2 ，执行 `git revert HEAD` 命令后指向C2'，在我们要撤销的提交记录后面居然多了一个新提交！
 
@@ -169,7 +169,7 @@ revert 之后就可以把你的更改推送到远程仓库与别人分享啦。
 git cherry-pick C2 C4
 ```
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-cherry-pick.gif)_`git cherry-pick C2 C4`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-cherry-pick.gif)_`git cherry-pick C2 C4`_
 
 我们只需要提交记录 C2 和 C4，所以 Git 就将被它们抓过来放到当前分支下了。 就是这么简单!
 
@@ -221,7 +221,7 @@ git rebase -i HEAD~4
 
 此时你想对的某个以前的提交记录进行一些小小的调整。比如设计师想修改一下 `newImage` 中图片的分辨率，尽管那个提交记录并不是最新的了。
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git1.jpg)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git1.jpg)
 
 我们可以通过下面的方法来克服困难：
 
@@ -301,7 +301,7 @@ $ git cherry-pick C3
 
 当 `ref` 提交记录上有某个标签时，则只输出标签名称。
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gitdescribe.jpg)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/gitdescribe.jpg)
 
 如上图
 
@@ -331,7 +331,7 @@ git checkout master^
 
 (在我们的图示中，第一个父提交记录是指合并提交记录正上方的那个提交记录。)
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git2.jpg)_`git checkout master^`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git2.jpg)_`git checkout master^`_
 
 这正是我们都已经习惯的方法。
 
@@ -341,7 +341,7 @@ git checkout master^
 git checkout master^2
 ```
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git3.jpg)_`git checkout master^2`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git3.jpg)_`git checkout master^2`_
 
 看见了吧？我们回到了另外一个父提交上。
 
@@ -351,7 +351,7 @@ git checkout master^2
 git checkout HEAD~^2~2
 ```
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git4.jpg)_`git checkout HEAD~^2~2`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git4.jpg)_`git checkout HEAD~^2~2`_
 
 #### 纠缠不清的分支
 
@@ -371,7 +371,7 @@ $ git cherry-pick C5 C4 C3 C2
 $ git branch -f three C2
 ```
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-level3.gif)
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-level3.gif)
 
 ## 远程仓库
 
@@ -419,7 +419,7 @@ Git 远程仓库相当的操作实际可以归纳为两点：向远程仓库传�
 
 C2,C3 被下载到了本地仓库，同时远程分支 `origin/master` 也被更新，反映到了这一变化
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-fetch.gif)_`git fetch`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-fetch.gif)_`git fetch`_
 
 `git fetch` 完成了仅有的但是很重要的两步:
 
@@ -459,7 +459,7 @@ C2,C3 被下载到了本地仓库，同时远程分支 `origin/master` 也被更
 
 先下载了 C3, 然后通过 `git merge origin/master` 合并了这一提交记录。现在我们的 master 分支包含了远程仓库中的更新。
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/git-pull.gif)_`git pull`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-pull.gif)_`git pull`_
 
 #### Git Push
 
@@ -473,4 +473,162 @@ OK，我们已经学过了如何从远程仓库获取更新并合并到本地的
 
 注意 —— `git push` 不带任何参数时的行为与 Git 的一个名为 `push.default` 的配置有关。它的默认值取决于你正使用的 Git 的版本，在你的项目中进行推送之前，最好检查一下这个配置。
 
-### 关于 origin 和它的周边 —— Git 远程仓库高级操作
+#### 偏离的提交历史
+
+假设你周一克隆了一个仓库，然后开始研发某个新功能。到周五时，你新功能开发测试完毕，可以发布了。但是 —— 天啊！你的同事这周写了一堆代码，还改了许多你的功能中使用的 API，这些变动会导致你新开发的功能变得不可用。但是他们已经将那些提交推送到远程仓库了，因此你的工作就变成了基于项目旧版的代码，与远程仓库最新的代码不匹配了。
+
+这种情况下, `git push` 就不知道该如何操作了。如果你执行 `git push`，Git 应该让远程仓库回到星期一那天的状态吗？还是直接在新代码的基础上添加你的代码，亦或由于你的提交已经过时而直接忽略你的提交？
+
+因为这情况（历史偏离）有许多的不确定性，Git 是不会允许你 `push` 变更的。实际上它会强制你先合并远程最新的代码，然后才能分享你的工作。
+
+那该如何解决这个问题呢？很简单，你需要做的就是使你的工作基于最新的远程分支。
+
+有许多方法做到这一点呢，不过最直接的方法就是通过 `rebase` 调整你的工作。咱们继续，看看怎么 `rebase`！
+
+```bash
+git fetch; git rebase origin/master; git push;
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push1.gif)_`git fetch; git rebase origin/master; git push;`_
+
+我们用 `git fetch` 更新了本地仓库中的远程分支，然后用 `rebase` 将我们的工作移动到最新的提交记录下，最后再用 `git push` 推送到远程仓库。
+
+还有其它的方法可以在远程仓库变更了以后更新我的工作吗? 当然有，我们还可以使用 `merge`
+
+尽管 `git merge` 不会移动你的工作（它会创建新的合并提交），但是它会告诉 Git 你已经合并了远程仓库的所有变更。这是因为远程分支现在是你本地分支的祖先，也就是说你的提交已经包含了远程分支的所有变化。
+
+看下演示...
+
+```bash
+git fetch; git merge origin/master; git push;
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push2.gif)_`git fetch; git merge origin/master; git push;`_
+
+我们用 `git fetch` 更新了本地仓库中的远程分支，然后合并了新变更到我们的本地分支（为了包含远程仓库的变更），最后我们用 `git push` 把工作推送到远程仓库。
+
+很好！但是要敲那么多命令，有没有更简单一点的？
+
+当然 —— 前面已经介绍过 `git pull` 就是 `fetch` 和 `merge` 的简写，类似的 `git pull --rebase` 就是 `fetch` 和 `rebase` 的简写！
+
+让我们看看简写命令是如何工作的。
+
+```bash
+git pull --rebase; git push;
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push3.gif)_`git pull --rebase; git push;`_
+
+跟之前结果一样，但是命令更短了。
+
+换用常规的 `pull`
+
+```bash
+git pull; git push;
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push4.gif)_`git pull; git push;`_
+
+还是跟以前一样!
+
+#### 锁定的Master(Locked Master)
+
+如果你是在一个大的合作团队中工作, 很可能是master被锁定了, 需要一些Pull Request流程来合并修改。如果你直接提交(commit)到本地master, 然后试图推送(push)修改, 你将会收到这样类似的信息:
+
+ `! [远程服务器拒绝] master -> master (TF402455: 不允许推送(push)这个分支; 你必须使用pull request来更新这个分支.)`
+
+ 远程服务器拒绝直接推送(push)提交到master, 因为策略配置要求 pull requests 来提交更新.
+
+你应该按照流程,新建一个分支, 推送(push)这个分支并申请pull request,但是你忘记并直接提交给了master.现在你卡住并且无法推送你的更新.
+
+解决办法是新建一个分支feature, 推送到远程服务器. 然后reset你的master分支和远程服务器保持一致, 否则下次你pull并且他人的提交和你冲突的时候就会有问题.
+
+```bash
+git reset origin/master; git checkout -b feature C2; git push origin feature;
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push5.gif)_`git reset origin/master; git checkout -b feature C2; git push origin feature;`_
+
+### Git 远程仓库高级操作
+
+#### 合并特性分支
+
+既然你应该很熟悉 fetch、pull、push 了，现在我们要通过一个新的工作流来测试你的这些技能。
+
+在大型项目中开发人员通常会在（从 `master` 上分出来的）特性分支上工作，工作完成后只做一次集成。这跟前面课程的描述很相像（把 `side` 分支推送到远程仓库），不过本节我们会深入一些.
+
+但是有些开发人员只在 `master` 上做 push、pull —— 这样的话 `master` 总是最新的，始终与远程分支 (`o/master`) 保持一致。
+
+对于接下来这个工作流，我们集成了两个步骤：
+
+* 将特性分支集成到 `master` 上
+
+* 推送并更新远程分支
+
+```bash
+$ git fetch
+
+$ git rebase o/master side1
+
+$ git rebase side1 side2
+
+$ git rebase side2 side3
+
+$ git rebase side3 master
+
+$ git push
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push6.gif)_`合并特性分支`_
+
+#### 合并远程仓库
+
+为了 `push` 新变更到远程仓库，你要做的就是包含远程仓库中最新变更。意思就是只要你的本地分支包含了远程分支（如 `o/master`）中的最新变更就可以了，至于具体是用 `rebase` 还是 `merge`，并没有限制。
+
+那么既然没有规定限制，为何前面几节都在着重于 `rebase` 呢？为什么在操作远程分支时不喜欢用 `merge` 呢？
+
+在开发社区里，有许多关于 merge 与 rebase 的讨论。以下是关于 rebase 的优缺点：
+
+* 优点 Rebase 使你的提交树变得很干净, 所有的提交都在一条线上
+
+* 缺点 Rebase 修改了提交树的历史
+
+比如, 提交 C1 可以被 rebase 到 C3 之后。这看起来 C1 中的工作是在 C3 之后进行的，但实际上是在 C3 之前。
+
+一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人（比如我自己）可能更喜欢干净的提交树，于是偏爱 rebase。仁者见仁，智者见智。
+
+```bash
+$ git checkout master
+
+$ git pull
+
+$ git merge side1
+
+$ git merge side2
+
+$ git merge side3
+
+$ git push
+```
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git-push7.gif)_`合并远程仓库`_
+
+#### 远程跟踪分支
+
+Git 好像知道 `master` 与 `origin/master` 是相关的。当然这些分支的名字是相似的，可能会让你觉得是依此将远程分支 `master` 和本地的 `master` 分支进行了关联。这种关联在以下两种情况下可以清楚地得到展示：
+
+* pull 操作时, 提交记录会被先下载到 `origin/master` 上，之后再合并到本地的 `master` 分支。隐含的合并目标由这个关联确定的。
+
+* push 操作时, 我们把工作从 `master` 推到远程仓库中的 `master` 分支(同时会更新远程分支 `origin/master`) 。这个推送的目的地也是由这种关联确定的！
+
+直接了当地讲，`master` 和 `origin/master` 的关联关系就是由分支的“remote tracking”属性决定的。`master` 被设定为跟踪 `origin/master` —— 这意味着为 `master` 分支指定了推送的目的地以及拉取后合并的目标。
+
+你可能想知道 `master` 分支上这个属性是怎么被设定的，你并没有用任何命令指定过这个属性呀！好吧, 当你克隆仓库的时候, Git 就自动帮你把这个属性设置好了。
+
+当你克隆时, Git 会为远程仓库中的每个分支在本地仓库中创建一个远程分支（比如 `origin/master`）。然后再创建一个跟踪远程仓库中活动分支的本地分支，默认情况下这个本地分支会被命名为 `master`。
+
+克隆完成后，你会得到一个本地分支（如果没有这个本地分支的话，你的目录就是“空白”的），但是可以查看远程仓库中所有的分支（如果你好奇心很强的话）。这样做对于本地仓库和远程仓库来说，都是最佳选择。
+
+这也解释了为什么会在克隆的时候会看到下面的输出：
+
+`local branch "master" set to track remote branch "o/master"`
