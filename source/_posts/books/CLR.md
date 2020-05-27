@@ -15,9 +15,11 @@ categories:
 
 <!-- more -->
 
-## 第一章 CLR的执行模型
+## 第Ⅰ部分 CLR基础
 
-### CLR是公共语言运行时(Common Language Runtime)
+### 第 1 章 CLR的执行模型
+
+#### CLR是公共语言运行时(Common Language Runtime)
 
 可由多种编程语言使用的“运行时”，核心功能（比如内存管理、程序集加载、安全性、异常处理和线程同步）可由面向CLR的所有语言使用。
 
@@ -35,7 +37,7 @@ JIT(just-in-time)编译器将IL转换成本机(native)CPU指令
 
 方法首次调用时会调用JITCompiler函数将IL代码转换成本机CPU指令，之后再次调用同一方法则会跳过JITCompiler函数，直接执行内存块中的代码。
 
-### 通用类型系统(Common Type System, CTS)
+#### 通用类型系统(Common Type System, CTS)
 
 类型向应用程序和其他类型公开了功能，通过类型，用一种编程语言写的代码能与用另一种编程语言写的代码沟通。
 
@@ -63,7 +65,7 @@ JIT(just-in-time)编译器将IL转换成本机(native)CPU指令
 
 * public：可由任何程序集中的任何代码访问
 
-### 公共语言规范(Common Language Specification, CLS)
+#### 公共语言规范(Common Language Specification, CLS)
 
 它详细定义了一个最小功能集，任何编译器只有支持这个功能集，生成的类型才能兼容由其它符合CLS、面向CLR的语言生成的组件。
 
@@ -71,9 +73,9 @@ JIT(just-in-time)编译器将IL转换成本机(native)CPU指令
 
 > 每种语言都提供了CLR/CTS的一个子集以及CLS的一个超集(但不一定是同一个超集)
 
-## 第二章 生成、打包、部署和管理应用程序及类型
+### 第 2 章 生成、打包、部署和管理应用程序及类型
 
-### 将类型生成到模块中
+#### 将类型生成到模块中
 
 ```
 csc.exe /out:Program.exe /t:exe /r:MSCorLib.dll Program.cs
@@ -134,7 +136,7 @@ csc.exe /out:Program.exe /t:exe /r:MSCorLib.dll Program.cs
 
 指定/noconfig命令行开关，编译器将忽略本地和全局CSC.rsp文件
 
-### 元数据概述
+#### 元数据概述
 
 PE文件中的元数据是由几个表构成的二进制数据块，有三种表，分别是定义表(definition table)、引用表(reference table)和清单表(mainfest table)
 
@@ -170,7 +172,7 @@ PE文件中的元数据是由几个表构成的二进制数据块，有三种表
 ILDasm Program.exe
 ```
 
-## 第三章 共享程序集和强命名程序集
+### 第 3 章 共享程序集和强命名程序集
 
 CLR支持两种程序集：弱命名程序集（weakly named assembly）和强命名程序集（strongly named assembly）
 
@@ -178,3 +180,106 @@ CLR支持两种程序集：弱命名程序集（weakly named assembly）和强�
 
 强命名程序集使用以下四个特性唯一标识：文件名（不计扩展名）、版本号、语言文化、公钥
 
+使用SN.exe获取密钥，命令行开关都区分大小写。
+
+```bash
+SN -k MyCompany.snk
+```
+
+这告诉SN.exe创建 MyCompany.snk 文件，文件中包含二进制形式的公钥和私钥。
+
+#### 全局程序集缓存
+
+由多个应用程序访问的程序集必须放到公认的目录，而且CLR在检测到对该程序集的引用时，必须知道检查该目录。这个公认位置就是**全局程序集缓存(Global Assembly Cache, GAC)**，一般在以下目录：
+
+```
+%SystemRoot%\Microsoft.NET\Assembly
+```
+
+永远不要将程序集文件手动复制到GAC目录，安装强命名程序集最常用的工具是 GACUtil.exe。建议进行私有而不是全局部署。
+
+CSC.exe 会尝试按顺序在以下目录查找程序集
+
+* 工作目录
+
+* CSC.exe 所在的目录，目录中还包含 CLR 的各种 DLL 文件
+
+* 使用 /lib 编译器开关指定的任何目录
+
+* 使用 LIB 环境变量指定的任何目录
+
+.NET Framework 程序集：生成程序集时从 编译器/CLR 目录加载，运行时从 GAC 加载
+
+## 第Ⅱ部分 设计类型
+
+### 第 4 章 类型基础
+
+* 所有类型都从 System.Object 派生
+
+* 类型转换
+
+* 命名空间和程序集
+
+* 运行时的相互关系
+
+#### 所有类型都从 System.Object 派生
+
+System.Object 类提供了以下4中公共实例方法
+
+* Equals 如果对象具有相同的值，则返回 true。
+
+* GetHashCode 返回对象的值的哈希码。
+
+* ToString 默认返回类型的完整名称（this.GetType().FullName）。
+
+* GetType 返回从 `Type` 派生的一个类型的实例，指出调用 GetType 的那个对象是什么类型。
+
+此外，从 System.Object 派生的类型能访问如下受保护的方法
+
+* MemberwiseClone 这个非虚方法创建类型的新实例，并将新对象的实例字段设与this对象的实例字段完全一致，返回对新实例的引用。
+
+* Finalize 在对象的内存被实际回收之前，会调用这个虚方法。
+
+CLR要求所有对象都用new操作符创建，以下是 new 操作符所做的事情
+
+* 计算类型及其所有基类型中定义的所有实例字段需要的字节数。
+
+* 从托管堆中分配类型要求的字节数，从而分配对象的内存，分配的所有字节都设为零(0)。
+
+* 初始化对象的“类型对象指针”和“同步块索引”成员。
+
+* 调用类型的实例构造器，传递在 new 调用中指定的实参
+
+#### 类型转换
+
+CLR 最重要的特性之一就是类型安全
+
+is 操作符检查对象是否兼容于指定类型
+
+as 操作符返回转换后的对象，如果不能转换则返回 null
+
+#### 命名空间和程序集
+
+**命名空间**对相关类型进行逻辑分组，使名称变得更长，更可能具有唯一性。
+
+命名空间和程序集不一定相关，不同程序集可能存在相同名称空间。
+
+
+
+### 第 5 章 基元类型、引用类型和值类型
+
+### 第 6 章 类型和成员基础
+
+### 第 7 章 常量和字段
+
+### 第 8 章 方法
+
+### 第 9 章 参数
+
+### 第 10 章 属性
+
+### 第 11 章 事件
+
+### 第 12 章 泛型
+
+### 第 13 章 接口

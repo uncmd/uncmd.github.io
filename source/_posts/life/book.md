@@ -16,13 +16,13 @@ categories:
 
 ## 书籍列表
 
-- [ ] 微服务设计（纽曼 Sam Newman）
+- [x] 三体
  
 - [ ] [CLR Via C#](https://uncmd.github.io/books/CLR/)
 
-- [ ] .NET微服务:容器化.NET引用架构指南
+- [ ] 微服务设计（纽曼 Sam Newman）
 
-- [x] 三体
+- [ ] .NET微服务:容器化.NET引用架构指南
 
 - [ ] 墨菲定律
 
@@ -34,4 +34,4 @@ categories:
 
 - [ ] 房思琪的初恋乐园
 
-- [ ] 编程珠玑
+- [ ] 编程珠玑  
