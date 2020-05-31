@@ -284,6 +284,19 @@ docker run --name internalgateway -p 5000:80 uncmd/internalgateway
 docker ps # 查看运行中的容器
 ```
 
+**容器设置自动启动，启动时加 --restart=always参数**
+
+```bash
+docker run --name internalgateway -p 5000:80 --restart=always uncmd/internalgateway
+```
+* no             不自动重启容器（默认值）
+
+* on-failure     容器发生错误而退出（容器退出状态不为0）重启容器
+
+* unless-stopped 在容器已经stop掉或docker stoped/restarted的时候才重启容器
+
+* always 	     在容器已经stop掉或Docker stoped/restarted的时候才重启容器
+
 容器运行正常，浏览器访问 http://服务器IP:5000
 
 > 第一次部署过程踩了较多坑，记录在此
