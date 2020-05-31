@@ -275,7 +275,7 @@ docker build -t uncmd/internalgateway .
 
 长时间的等待，构建成功，使用 `docker images` 查看
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-images.jpg.jpg)_`docker images`_
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-images.jpg)_`docker images`_
 
 启动刚才构建好的容器
 
