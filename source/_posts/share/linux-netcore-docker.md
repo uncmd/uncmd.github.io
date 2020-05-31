@@ -259,7 +259,7 @@ docker run --name docker_nginx_v1 -d -p 80:80 nginx:v1
 ```bash
 FROM mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim
 WORKDIR /app
-COPY ..
+COPY . . # 注意中间有个空格
 ENTRYPOINT ["dotnet", "InternalGateway.dll"]
 ```
 
@@ -270,21 +270,41 @@ ENTRYPOINT ["dotnet", "InternalGateway.dll"]
 构建镜像，Dockerfile所在的文件夹执行
 
 ```bash
-docker build -t internalgateway:v1 .
+docker build -t uncmd/internalgateway .
 ```
 
 长时间的等待，构建成功，使用 `docker images` 查看
 
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-images.jpg.jpg)_`docker images`_
+
 启动刚才构建好的容器
 
 ```bash
-docker run --name internalgateway -d -p 5000:5000 internalgateway
+docker run --name internalgateway -p 5000:80 uncmd/internalgateway
 docker ps # 查看运行中的容器
 ```
 
 容器运行正常，浏览器访问 http://服务器IP:5000
 
+> 第一次部署过程踩了较多坑，记录在此
+
+> `docker build` 构建的镜像名称和标签为 non
+
+原因使镜像构建不成功，仔细查看构建输出日志，在哪一步失败，然后根据提示修改 Dockerfile 文件直至成功
+
+> `docker run` 映射的端口为空，`docker ps -a` 查看端口没有映射，并且 `docker start` 启动不了容器
+
+原因是容器运行时错误，但是 `-d` 参数隐藏了具体错误，对于不了解的同学很容易被误导
+
+* 使用 `docker rm` 命令删除容器
+
+* `docker run` 命令去掉 `-d` 参数，使运行错误在前台展示
+
+* 根据错误修改 Dockerfile 文件，重新生成镜像并运行
+
 页面正常访问，至此，.net core 程序 docker 部署方式完成。
+
+![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-result.jpg)_访问5000端口_
 
 ## Docker 常用命令
 
@@ -312,6 +332,8 @@ docker rm container_id # 删除容器
 docker info # 查看当前系统Docker信息
 
 docker pull centos:latest # 将Centos这个仓库下面的所有镜像下载到本地repository
+
+docker image prune # 清理镜像
 ```
 
 > **参考**
