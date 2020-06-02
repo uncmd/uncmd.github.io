@@ -522,7 +522,7 @@ local_search:
 
 # https://github.com/oncletom/hexo-algolia
 algolia_search:
-  enable: true
+  enable: false
   src: /js/search/algolia-search.js
   hits:
     per_page: 10 # the number of search results per page
