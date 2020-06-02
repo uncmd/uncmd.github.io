@@ -11,7 +11,7 @@ categories:
 
 > 官网文档：https://www.app-metrics.io/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/appmetrics.png)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/appmetrics.png)](https://uncmd.github.io/microservice/metrics/)
 
 <!-- more -->
 

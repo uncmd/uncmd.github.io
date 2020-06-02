@@ -11,7 +11,7 @@ categories:
 
 > 官网地址：https://git-scm.com/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/gits/git.jpg)](https://uncmd.github.io/share/git/)
 
 <!-- more -->
 

@@ -9,7 +9,7 @@ categories:
 
 > 健身是一辈子的事业，对于久坐的程序员来说更是如此。
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/timg.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/timg.jpg)](https://uncmd.github.io/life/runner/)
 
 <!-- more -->
 

@@ -12,7 +12,7 @@ categories:
 
 > 官网地址：https://cn.vuejs.org/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/vue.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/vue.jpg)](https://uncmd.github.io/web/vue/)
 
 <!-- more -->
 

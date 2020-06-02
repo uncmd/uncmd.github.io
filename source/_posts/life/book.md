@@ -10,7 +10,7 @@ categories:
 
 > 读书使人明智，读书使人聪慧
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/books.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/books.jpg)](https://uncmd.github.io/life/book/)
 
 <!-- more -->
 

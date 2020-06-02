@@ -11,7 +11,7 @@ categories:
 
 > 官网文档：https://www.jenkins.io/zh/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/jenkins.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/jenkins.jpg)](https://uncmd.github.io/microservice/jenkins/)
 
 <!-- more -->
 

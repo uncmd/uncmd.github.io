@@ -12,7 +12,7 @@ categories:
 
 > [Microsoft Doc 自定义生成](https://docs.microsoft.com/zh-cn/visualstudio/msbuild/customize-your-build?view=vs-2019)
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/customize-your-build.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/customize-your-build.jpg)](https://uncmd.github.io/share/customize-your-build/)
 
 <!-- more -->
 

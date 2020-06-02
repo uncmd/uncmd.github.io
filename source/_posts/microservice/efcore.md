@@ -11,7 +11,7 @@ categories:
 
 > 官网文档：https://docs.microsoft.com/zh-cn/ef/core/
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/efcore.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/efcore.jpg)](https://uncmd.github.io/microservice/efcore/)
 
 <!-- more -->
 

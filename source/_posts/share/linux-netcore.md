@@ -20,7 +20,7 @@ categories:
 
 * 辅助工具 xftp
 
-![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/linux-netcore-face.jpg)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/linux-netcore-face.jpg)](https://uncmd.github.io/share/linux-netcore/)
 
 <!-- more -->
 
