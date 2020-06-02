@@ -267,7 +267,7 @@ font:
 
 # custom your color in fireworks
 fireworks:
-  enable: true
+  enable: false
   colors:
     - "102, 167, 221"
     - "62, 131, 225"
