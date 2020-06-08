@@ -112,6 +112,7 @@ userdel -r username        // 删除用户
 
 ```bash
 mkdir /var/ftp/test
+chmod -R 777 /var/ftp/test
 ```
 
 3、更改 /var/ftp/test 目录的拥有者为 ftptest
