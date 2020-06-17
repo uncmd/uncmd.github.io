@@ -32,6 +32,6 @@ categories:
 
 - [ ] 月亮与六便士
 
-- [ ] 房思琪的初恋乐园
+- [x] [房思琪的初恋乐园](https://uncmd.github.io/books/fsq-share/)
 
 - [ ] 编程珠玑  

@@ -11,7 +11,7 @@ categories:
 
 本书针对CLR和.NET Framework 进行深入、全面的探讨，并结合实例介绍了如何利用它们进行设计、开发和调试。
 
-[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/clr.jpg)](https://uncmd.github.io/books/CLR/)
+[![](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/books/clr.jpg)](https://uncmd.github.io/books/CLR/)
 
 <!-- more -->
 
@@ -69,7 +69,7 @@ JIT(just-in-time)编译器将IL转换成本机(native)CPU指令
 
 它详细定义了一个最小功能集，任何编译器只有支持这个功能集，生成的类型才能兼容由其它符合CLS、面向CLR的语言生成的组件。
 
-![CLR](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/clr1-6.jpg)
+![CLR](https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/books/clr1-6.jpg)
 
 > 每种语言都提供了CLR/CTS的一个子集以及CLS的一个超集(但不一定是同一个超集)
 
