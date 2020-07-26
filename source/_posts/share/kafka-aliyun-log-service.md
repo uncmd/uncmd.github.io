@@ -148,7 +148,7 @@ Serilog写日志和接收日志是分离的，有Serilog和Sink两部分，Seril
     }
 ```
 
-在重写的 `EmitBatchAsync` 方法中消费日志事件，其中 `ITextFormatter` 是应用启动时配置的文本格式化类型，默认为 `CompactJsonFormatter` 类型，它时紧凑的Json类型，比一般的Json类型体积更小，其中一些具体化的属性如下
+在重写的 `EmitBatchAsync` 方法中消费日志事件，其中 `ITextFormatter` 是应用启动时配置的文本格式化类型，默认为 `CompactJsonFormatter` 类型，它时紧凑的Json类型，比一般的Json类型体积更小，其中一些具体化的属性如下，[CompactJsonFormatter仓库地址](https://github.com/serilog/serilog-formatting-compact)
 
 | Property | Name | Description |
 | -------- | ---- | ----------- |
@@ -181,7 +181,7 @@ Serilog写日志和接收日志是分离的，有Serilog和Sink两部分，Seril
 
 这个方法很简单，就是构建一个Kafka生产者对象，然后根据配置的主题发送消息到Kafka，如此一个Serilog.Sink.Kafka就开发完成了。
 
-代码将发布到GitHub
+完整代码将发布到GitHub
 
 ## 采集工具上传日志到Kafka Cluster
 
