@@ -56,6 +56,37 @@ Docker compose 使用 YAML 文件来定义多服务的应用，YAML 是 JSON 的
 
 Docker Compose 默认使用文件名 `docker-compose.yml`，也可以使用 `-f` 参数指定具体文件
 
+一个简单的 Compose 文件示例
+
+```yaml
+version: "3.5"
+services:
+  web-fe:
+    build: .
+    command: python app.py
+    ports:
+      - target: 5000
+        published: 5000
+    networks:
+      - counter-net
+    volumes:
+      - type: volume
+        source: counter-vol
+        target: /code
+  redis:
+    image: "redis:alpine"
+    networks:
+      counter-net:
+
+networks:
+  counter-net:
+
+volumes:
+  counter-vol:
+```
+
+version是必须指定的，而且总是位于文件的第一行，它定义了 Compose 文件格式的版本。
+
 
 
 ## 命令
