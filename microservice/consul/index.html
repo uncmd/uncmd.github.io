@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="服务注册/发现Consul"><meta name="keywords" content="服务注册"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>服务注册/发现Consul | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Consul介绍"><span class="toc-number">1.</span> <span class="toc-text">Consul介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#快速开始"><span class="toc-number">1.1.</span> <span class="toc-text">快速开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文档"><span class="toc-number">1.2.</span> <span class="toc-text">文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consul使用"><span class="toc-number">2.</span> <span class="toc-text">Consul使用</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/microservice/consul/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="服务注册/发现Consul"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">服务注册/发现Consul<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/microservice/consul.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-03 23:41:40" itemprop="dateCreated datePublished" datetime="2020-05-03T23:41:40+00:00">2020-05-03</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">11k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">20 分钟</span></span></span><span class="leancloud_visitors" id="/microservice/consul/" data-flag-title="服务注册/发现Consul"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="text">微服务</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">服务注册</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><blockquote>
+<p>自动化网络配置，发现服务并启用跨任何云或运行时的安全连接。</p>
+</blockquote>
+<blockquote>
+<p>官网：<a href="https://www.consul.io/" target="_blank" rel="noopener">https://www.consul.io/</a></p>
+</blockquote>
+<p><a href="https://uncmd.github.io/microservice/consul/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/consul.jpg" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="Consul介绍"><a href="#Consul介绍" class="headerlink" title="Consul介绍"></a>Consul介绍</h2><p>Consul是一种服务发现和配置工具。Consul具有分布式，高可用性和极高的可扩展性。</p>
+<p>Consul提供了几个关键功能：</p>
+<ul>
+<li><p>服务发现 - 使用简单的服务来注册自己并通过DNS或HTTP接口发现其他服务。也可以注册SaaS提供商等外部服务。</p>
+</li>
+<li><p>运行状况检查 - 运行状况检查使Consul能够快速向运营商发出有关群集中任何问题的警报 与服务发现的集成可防止将流量路由到不健康的主机，并启用服务级别的断路器。</p>
+</li>
+<li><p>密钥/值存储 - 灵活的密钥/值存储可以存储动态配置，功能标记，协调，领导者选举等。简单的HTTP API使其易于在任何地方使用。</p>
+</li>
+<li><p>多数据中心 - Consul可以识别数据中心，并且可以支持任意数量的区域而无需复杂的配置。</p>
+</li>
+<li><p>服务分段 - Consul Connect通过自动TLS加密和基于身份的授权实现安全的服务到服务通信。</p>
+</li>
+</ul>
+<h3 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h3><p>可以在Consul网站上查看广泛的快速入门：</p>
+<p><a href="https://www.consul.io/intro/getting-started/install.html" target="_blank" rel="noopener">https://www.consul.io/intro/getting-started/install.html</a></p>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>可以在Consul网站上查看完整、全面的文档：</p>
+<p><a href="https://www.sonsul.io/docs" target="_blank" rel="noopener">https://www.sonsul.io/docs</a></p>
+<p>参考资料：</p>
+<p><a href="https://blog.csdn.net/liuzhuchen/article/details/81913562" target="_blank" rel="noopener">Consul使用手册</a></p>
+<h2 id="Consul使用"><a href="#Consul使用" class="headerlink" title="Consul使用"></a>Consul使用</h2><p>创建名称为Consul的Windows服务，并读取D:\Consul\configs文件夹中的配置：</p>
+<blockquote>
+<p>sc create “Consul” binPath= “D:\Consul\consul.exe agent -config-dir D:\Consul\configs” start= auto</p>
+</blockquote>
+<p>已注册的服务即使关闭了也不会从Consul移除，需要手动移除无效的服务，-id参数后面是服务的ID：</p>
+<blockquote>
+<p>consul services deregister -id=ServiceId</p>
+</blockquote>
+<p>Consul启动读取配置文件夹会按名称顺序读取，如先读取a.json，然后读取b.json，如果a、b中存在相同的配置项，则 b 会覆盖 a 的值。</p>
+<blockquote>
+<p>特别注意：</p>
+</blockquote>
+<blockquote>
+<p>当服务独立部署的时候可以正常注册到 Consul，但是部署到 IIS 后，服务直到第一次接受请求才会注册。当所有服务都是通过网关请求时，网关首先要从 Consul 获取服务信息，但是服务启动后未注册导致网关无法获取服务信息，请求失败。</p>
+</blockquote>
+<blockquote>
+<p>解决这个问题有两种思路，一是IIS启动和回收时立即请求一次服务（预加载），二是使用定时服务一直请求服务。</p>
+</blockquote>
+<blockquote>
+<p>第一种方式可参考微软官方方案：<a href="https://docs.microsoft.com/zh-cn/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization" target="_blank" rel="noopener">IIS 8.0 Application Initialization</a>，几次尝试未成功后我使用了第二种方式，使用调度一直请求服务.</p>
+</blockquote>
+<p>Consul服务配置示例：</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+    <span class="token property">"datacenter"</span><span class="token operator">:</span> <span class="token string">"ctl1"</span><span class="token punctuation">,</span>
+    <span class="token property">"node_name"</span><span class="token operator">:</span> <span class="token string">"node1"</span><span class="token punctuation">,</span>
+    <span class="token property">"data_dir"</span><span class="token operator">:</span> <span class="token string">"data"</span><span class="token punctuation">,</span>
+    <span class="token property">"performance"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"raft_multiplier"</span><span class="token operator">:</span> <span class="token number">3</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"server"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"ui"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"ports"</span><span class="token operator">:</span><span class="token punctuation">{</span>
+        <span class="token property">"http"</span><span class="token operator">:</span> <span class="token number">8500</span><span class="token punctuation">,</span>
+        <span class="token property">"dns"</span><span class="token operator">:</span> <span class="token number">8600</span><span class="token punctuation">,</span>
+        <span class="token property">"grpc"</span><span class="token operator">:</span> <span class="token number">8400</span><span class="token punctuation">,</span>
+        <span class="token property">"serf_lan"</span><span class="token operator">:</span> <span class="token number">8301</span><span class="token punctuation">,</span>
+        <span class="token property">"serf_wan"</span><span class="token operator">:</span> <span class="token number">8302</span><span class="token punctuation">,</span>
+        <span class="token property">"server"</span><span class="token operator">:</span> <span class="token number">8300</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"log_level"</span><span class="token operator">:</span> <span class="token string">"TRACE"</span><span class="token punctuation">,</span>
+    <span class="token property">"log_file"</span><span class="token operator">:</span> <span class="token string">"logs/"</span><span class="token punctuation">,</span>
+    <span class="token property">"bootstrap_expect"</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token property">"client_addr"</span><span class="token operator">:</span> <span class="token string">"0.0.0.0"</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注意：”client_addr”: 默认是127.0.0.1所以不对外提供服务，如果你要对外提供服务改成0.0.0.0。如果是默认127.0.0.1，无法从外部访问Consul的UI界面</p>
+</blockquote>
+<p>从配置文件注册服务：</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"services"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"service1"</span><span class="token punctuation">,</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ConsulServer"</span><span class="token punctuation">,</span>
+      <span class="token property">"tags"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"primary"</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"address"</span><span class="token operator">:</span> <span class="token string">"localhost"</span><span class="token punctuation">,</span>
+      <span class="token property">"port"</span><span class="token operator">:</span> <span class="token number">8282</span><span class="token punctuation">,</span>
+      <span class="token property">"checks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+        <span class="token property">"http"</span><span class="token operator">:</span> <span class="token string">"http://localhost:8282/Server.svc"</span><span class="token punctuation">,</span>
+        <span class="token property">"interval"</span><span class="token operator">:</span> <span class="token string">"10s"</span><span class="token punctuation">,</span>
+        <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token string">"1s"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"id"</span><span class="token operator">:</span> <span class="token string">"service2"</span><span class="token punctuation">,</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"ConsulServer"</span><span class="token punctuation">,</span>
+      <span class="token property">"tags"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token string">"primary"</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"address"</span><span class="token operator">:</span> <span class="token string">"localhost"</span><span class="token punctuation">,</span>
+      <span class="token property">"port"</span><span class="token operator">:</span> <span class="token number">8283</span><span class="token punctuation">,</span>
+      <span class="token property">"checks"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+        <span class="token property">"http"</span><span class="token operator">:</span> <span class="token string">"http://localhost:8283/Server.svc"</span><span class="token punctuation">,</span>
+        <span class="token property">"interval"</span><span class="token operator">:</span> <span class="token string">"10s"</span><span class="token punctuation">,</span>
+        <span class="token property">"timeout"</span><span class="token operator">:</span> <span class="token string">"1s"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>acl_token：agent会使用这个token和consul server进行请求<br>acl_ttl：控制TTL的cache，默认是30s<br>addresses：一个嵌套对象，可以设置以下key：dns、http、rpc<br>advertise_addr：等同于-advertise<br>bootstrap：等同于-bootstrap<br>bootstrap_expect：等同于-bootstrap-expect<br>bind_addr：等同于-bind<br>ca_file：提供CA文件路径，用来检查客户端或者服务端的链接<br>cert_file：必须和key_file一起<br>check_update_interval：<br>client_addr：等同于-client<br>datacenter：等同于-dc<br>data_dir：等同于-data-dir<br>disable_anonymous_signature：在进行更新检查时禁止匿名签名<br>enable_debug：开启debug模式<br>enable_syslog：等同于-syslog<br>encrypt：等同于-encrypt<br>key_file：提供私钥的路径<br>leave_on_terminate：默认是false，如果为true，当agent收到一个TERM信号的时候，它会发送leave信息到集群中的其他节点上。<br>log_level：等同于-log-level  “trace”, “debug”, “info”, “warn”, 和 “err”<br>node_name:等同于-node<br>ports：这是一个嵌套对象，可以设置以下key：dns(dns地址：8600)、http(http api地址：8500)、rpc(rpc:8400)、serf_lan(lan port:8301)、serf_wan(wan port:8302)、server(server rpc:8300)<br>protocol：等同于-protocol<br>rejoin_after_leave：等同于-rejoin<br>retry_join：等同于-retry-join<br>retry_interval：等同于-retry-interval<br>server：等同于-server<br>syslog_facility：当enable_syslog被提供后，该参数控制哪个级别的信息被发送，默认Local0<br>ui_dir：等同于-ui-dir</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/microservice/consul/" title="服务注册/发现Consul">http://uncmd.github.io/microservice/consul/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/microservice/schedule/" rel="prev" title="定时任务"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">定时任务</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/microservice/tracelog/" rel="next" title="分布式追踪/日志"><span class="post-nav-text">分布式追踪/日志</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+服务注册/发现Consul" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

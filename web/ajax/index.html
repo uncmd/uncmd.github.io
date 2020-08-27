@@ -1,0 +1,294 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="AJAX 教程"><meta name="keywords" content="笔记,AJAX"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>AJAX 教程 | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-介绍"><span class="toc-number">1.</span> <span class="toc-text">AJAX 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-XMLHttpRequest-对象"><span class="toc-number">2.</span> <span class="toc-text">AJAX XMLHttpRequest 对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-number">2.1.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求"><span class="toc-number">2.2.</span> <span class="toc-text">请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应"><span class="toc-number">2.3.</span> <span class="toc-text">响应</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onreadystatechange-事件"><span class="toc-number">2.4.</span> <span class="toc-text">onreadystatechange 事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX-高级"><span class="toc-number">3.</span> <span class="toc-text">AJAX 高级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-ASP-PHP-实例"><span class="toc-number">3.1.</span> <span class="toc-text">AJAX ASP&#x2F;PHP 实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-数据库实例"><span class="toc-number">3.2.</span> <span class="toc-text">AJAX 数据库实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AJAX-XML-实例"><span class="toc-number">3.3.</span> <span class="toc-text">AJAX XML 实例</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/web/ajax/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="AJAX 教程"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">AJAX 教程<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/web/ajax.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-04-10 23:41:40" itemprop="dateCreated datePublished" datetime="2020-04-10T23:41:40+00:00">2020-04-10</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">34k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">1:01</span></span></span><span class="leancloud_visitors" id="/web/ajax/" data-flag-title="AJAX 教程"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/Web/" itemprop="url" rel="index"><span itemprop="text">Web</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E7%AC%94%E8%AE%B0/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">笔记</span></a><a class="tag" href="/tags/AJAX/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">AJAX</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><h2 id="AJAX-介绍"><a href="#AJAX-介绍" class="headerlink" title="AJAX 介绍"></a>AJAX 介绍</h2><p><a href="http://www.w3school.com.cn/ajax/index.asp" target="_blank" rel="noopener">AJAX 参考手册(w3school)</a></p>
+<p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）</p>
+<h2 id="AJAX-XMLHttpRequest-对象"><a href="#AJAX-XMLHttpRequest-对象" class="headerlink" title="AJAX XMLHttpRequest 对象"></a>AJAX XMLHttpRequest 对象</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>所有现代浏览器均支持 XMLHttpRequest 对象（IE5 和 IE6 使用 ActiveXObject）</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">var</span> xmlhttp<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">else</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE6, IE5</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">"Microsoft.XMLHTTP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><p>如需将请求发送到服务器，我们使用 XMLHttpRequest 对象的 open() 和 send() 方法</p>
+<blockquote>
+<p>open(method,url,async) 规定请求的类型、URL 以及是否异步处理请求</p>
+</blockquote>
+<ul>
+<li><p>method：请求的类型；GET 或 POST</p>
+</li>
+<li><p>url：文件在服务器上的位置</p>
+</li>
+<li><p>async：true（异步）或 false（同步）</p>
+</li>
+</ul>
+<blockquote>
+<p>send(string) 将请求发送到服务器</p>
+</blockquote>
+<ul>
+<li>string：仅用于 POST 请求</li>
+</ul>
+<p>如果需要像 HTML 表单那样 POST 数据，请使用 setRequestHeader() 来添加 HTTP 头。然后在 send() 方法中规定您希望发送的数据</p>
+<pre class=" language-javascript"><code class="language-javascript">xmlhttp<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">,</span><span class="token string">"ajax_test.asp"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">setRequestHeader</span><span class="token punctuation">(</span><span class="token string">"Content-type"</span><span class="token punctuation">,</span><span class="token string">"application/x-www-form-urlencoded"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"fname=Bill&amp;lname=Gates"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>当使用 async=true 时，请规定在响应处于 onreadystatechange 事件中的就绪状态时执行的函数</p>
+<pre class=" language-javascript"><code class="language-javascript">xmlhttp<span class="token punctuation">.</span>onreadystatechange<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttp<span class="token punctuation">.</span>readyState<span class="token operator">==</span><span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttp<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">200</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myDiv"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span><span class="token string">"test1.txt"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><p>如需获得来自服务器的响应，请使用 XMLHttpRequest 对象的 responseText 或 responseXML 属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>responseText</td>
+<td>获得字符串形式的响应数据</td>
+</tr>
+<tr>
+<td>responseXML</td>
+<td>获得 XML 形式的响应数据</td>
+</tr>
+</tbody></table>
+<pre class=" language-javascript"><code class="language-javascript">document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myDiv"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+
+xmlDoc<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseXML<span class="token punctuation">;</span>
+txt<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+x<span class="token operator">=</span>xmlDoc<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"ARTIST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>x<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  txt<span class="token operator">=</span>txt <span class="token operator">+</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nodeValue <span class="token operator">+</span> <span class="token string">"&lt;br />"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myDiv"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>txt<span class="token punctuation">;</span></code></pre>
+<h3 id="onreadystatechange-事件"><a href="#onreadystatechange-事件" class="headerlink" title="onreadystatechange 事件"></a>onreadystatechange 事件</h3><p>每当 readyState 改变时，就会触发 onreadystatechange 事件</p>
+<p>readyState : 存有 XMLHttpRequest 的状态。从 0 到 4 发生变化</p>
+<ul>
+<li>0: 请求未初始化</li>
+<li>1: 服务器连接已建立</li>
+<li>2: 请求已接收</li>
+<li>3: 请求处理中</li>
+<li>4: 请求已完成，且响应已就绪</li>
+</ul>
+<p>status </p>
+<ul>
+<li>200 : “OK”</li>
+<li>404 : 未找到页面</li>
+</ul>
+<p>当 readyState 等于 4 且状态为 200 时，表示响应已就绪</p>
+<pre class=" language-javascript"><code class="language-javascript">xmlhttp<span class="token punctuation">.</span>onreadystatechange<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttp<span class="token punctuation">.</span>readyState<span class="token operator">==</span><span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttp<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">200</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myDiv"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>使用 Callback 函数</p>
+</blockquote>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">myFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token function">loadXMLDoc</span><span class="token punctuation">(</span><span class="token string">"ajax_info.txt"</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttp<span class="token punctuation">.</span>readyState<span class="token operator">==</span><span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttp<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">200</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myDiv"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h2 id="AJAX-高级"><a href="#AJAX-高级" class="headerlink" title="AJAX 高级"></a>AJAX 高级</h2><h3 id="AJAX-ASP-PHP-实例"><a href="#AJAX-ASP-PHP-实例" class="headerlink" title="AJAX ASP/PHP 实例"></a>AJAX ASP/PHP 实例</h3><p>当用户在上面的输入框中键入字符时，会执行函数 “showHint()” 。该函数由 “onkeyup” 事件触发</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">showHint</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token keyword">var</span> xmlhttp<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">.</span>length<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"txtHint"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">else</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE6, IE5</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">"Microsoft.XMLHTTP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span>onreadystatechange<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttp<span class="token punctuation">.</span>readyState<span class="token operator">==</span><span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttp<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">200</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"txtHint"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span><span class="token string">"gethint.asp?q="</span><span class="token operator">+</span>str<span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>如果输入框为空 (str.length==0)，则该函数清空 txtHint 占位符的内容，并退出函数。</p>
+<p>如果输入框不为空，showHint() 函数执行以下任务：</p>
+<ul>
+<li>创建 XMLHttpRequest 对象</li>
+<li>当服务器响应就绪时执行函数</li>
+<li>把请求发送到服务器上的文件</li>
+<li>请注意我们向 URL 添加了一个参数 q （带有输入框的内容）</li>
+</ul>
+<p>“gethint.asp” 中的源代码会检查一个名字数组，然后向浏览器返回相应的名字</p>
+<h3 id="AJAX-数据库实例"><a href="#AJAX-数据库实例" class="headerlink" title="AJAX 数据库实例"></a>AJAX 数据库实例</h3><p>当用户在上面的下拉列表中选择某个客户时，会执行名为 “showCustomer()” 的函数。该函数由 “onchange” 事件触发</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">showCustomer</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token keyword">var</span> xmlhttp<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token operator">==</span><span class="token string">""</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"txtHint"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">else</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE6, IE5</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">"Microsoft.XMLHTTP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span>onreadystatechange<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttp<span class="token punctuation">.</span>readyState<span class="token operator">==</span><span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttp<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">200</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"txtHint"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span><span class="token string">"getcustomer.asp?q="</span><span class="token operator">+</span>str<span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>showCustomer() 函数执行以下任务：</p>
+<ul>
+<li>检查是否已选择某个客户</li>
+<li>创建 XMLHttpRequest 对象</li>
+<li>当服务器响应就绪时执行所创建的函数</li>
+<li>把请求发送到服务器上的文件</li>
+<li>请注意我们向 URL 添加了一个参数 q （带有输入域中的内容）</li>
+</ul>
+<p>“getcustomer.asp” 中的源代码负责对数据库进行查询，然后用 HTML 表格返回结果</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token operator">&lt;</span><span class="token operator">%</span>
+response<span class="token punctuation">.</span>expires<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span>
+sql<span class="token operator">=</span><span class="token string">"SELECT * FROM CUSTOMERS WHERE CUSTOMERID="</span>
+sql<span class="token operator">=</span>sql <span class="token operator">&amp;</span> <span class="token string">"'"</span> <span class="token operator">&amp;</span> request<span class="token punctuation">.</span><span class="token function">querystring</span><span class="token punctuation">(</span><span class="token string">"q"</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token string">"'"</span>
+
+<span class="token keyword">set</span> conn<span class="token operator">=</span>Server<span class="token punctuation">.</span><span class="token function">CreateObject</span><span class="token punctuation">(</span><span class="token string">"ADODB.Connection"</span><span class="token punctuation">)</span>
+conn<span class="token punctuation">.</span>Provider<span class="token operator">=</span><span class="token string">"Microsoft.Jet.OLEDB.4.0"</span>
+conn<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>Server<span class="token punctuation">.</span><span class="token function">Mappath</span><span class="token punctuation">(</span><span class="token string">"/db/northwind.mdb"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">set</span> rs<span class="token operator">=</span>Server<span class="token punctuation">.</span><span class="token function">CreateObject</span><span class="token punctuation">(</span><span class="token string">"ADODB.recordset"</span><span class="token punctuation">)</span>
+rs<span class="token punctuation">.</span>Open sql<span class="token punctuation">,</span>conn
+
+response<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;table>"</span><span class="token punctuation">)</span>
+<span class="token keyword">do</span> until rs<span class="token punctuation">.</span>EOF
+  <span class="token keyword">for</span> each x <span class="token keyword">in</span> rs<span class="token punctuation">.</span>Fields
+    response<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;tr>&lt;td>&lt;b>"</span> <span class="token operator">&amp;</span> x<span class="token punctuation">.</span>name <span class="token operator">&amp;</span> <span class="token string">"&lt;/b>&lt;/td>"</span><span class="token punctuation">)</span>
+    response<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;td>"</span> <span class="token operator">&amp;</span> x<span class="token punctuation">.</span>value <span class="token operator">&amp;</span> <span class="token string">"&lt;/td>&lt;/tr>"</span><span class="token punctuation">)</span>
+  next
+  rs<span class="token punctuation">.</span>MoveNext
+loop
+response<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;/table>"</span><span class="token punctuation">)</span>
+<span class="token operator">%</span><span class="token operator">></span></code></pre>
+<h3 id="AJAX-XML-实例"><a href="#AJAX-XML-实例" class="headerlink" title="AJAX XML 实例"></a>AJAX XML 实例</h3><p>loadXMLDoc() 函数创建 XMLHttpRequest 对象，添加当服务器响应就绪时执行的函数，并将请求发送到服务器。</p>
+<p>当服务器响应就绪时，会构建一个 HTML 表格，从 XML 文件中提取节点（元素），最后使用已经填充了 XML 数据的 HTML 表格来更新 txtCDInfo 占位符</p>
+<pre class=" language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">loadXMLDoc</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token keyword">var</span> xmlhttp<span class="token punctuation">;</span>
+<span class="token keyword">var</span> txt<span class="token punctuation">,</span>xx<span class="token punctuation">,</span>x<span class="token punctuation">,</span>i<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">else</span>
+  <span class="token punctuation">{</span><span class="token comment" spellcheck="true">// code for IE6, IE5</span>
+  xmlhttp<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">"Microsoft.XMLHTTP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span>onreadystatechange<span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xmlhttp<span class="token punctuation">.</span>readyState<span class="token operator">==</span><span class="token number">4</span> <span class="token operator">&amp;&amp;</span> xmlhttp<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">200</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+    txt<span class="token operator">=</span><span class="token string">"&lt;table border='1'>&lt;tr>&lt;th>Title&lt;/th>&lt;th>Artist&lt;/th>&lt;/tr>"</span><span class="token punctuation">;</span>
+    x<span class="token operator">=</span>xmlhttp<span class="token punctuation">.</span>responseXML<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"CD"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>x<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token punctuation">{</span>
+      txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;tr>"</span><span class="token punctuation">;</span>
+      xx<span class="token operator">=</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"TITLE"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">{</span>
+        <span class="token keyword">try</span>
+          <span class="token punctuation">{</span>
+          txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> xx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>nodeValue <span class="token operator">+</span> <span class="token string">"&lt;/td>"</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">er</span><span class="token punctuation">)</span>
+          <span class="token punctuation">{</span>
+          txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;td> &lt;/td>"</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    xx<span class="token operator">=</span>x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"ARTIST"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">{</span>
+        <span class="token keyword">try</span>
+          <span class="token punctuation">{</span>
+          txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> xx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>nodeValue <span class="token operator">+</span> <span class="token string">"&lt;/td>"</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">er</span><span class="token punctuation">)</span>
+          <span class="token punctuation">{</span>
+          txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;td> &lt;/td>"</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+      txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;/tr>"</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    txt<span class="token operator">=</span>txt <span class="token operator">+</span> <span class="token string">"&lt;/table>"</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'txtCDInfo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">=</span>txt<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span>url<span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xmlhttp<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/web/ajax/" title="AJAX 教程">http://uncmd.github.io/web/ajax/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/web/vue/" rel="prev" title="Vue.js 学习"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Vue.js 学习</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/life/runner/" rel="next" title="运动健身"><span class="post-nav-text">运动健身</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+AJAX 教程" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

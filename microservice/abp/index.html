@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="ASP.NET Boilerplate应用与实践"><meta name="keywords" content="ABP"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>ASP.NET Boilerplate应用与实践 | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何获取客户端真实IP，而不是代理IP"><span class="toc-number">1.</span> <span class="toc-text">如何获取客户端真实IP，而不是代理IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#审计日志添加自定义数据（服务端地址）"><span class="toc-number">2.</span> <span class="toc-text">审计日志添加自定义数据（服务端地址）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态C-API客户端"><span class="toc-number">3.</span> <span class="toc-text">动态C# API客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务接口"><span class="toc-number">3.1.</span> <span class="toc-text">服务接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#服务元数据接口"><span class="toc-number">3.2.</span> <span class="toc-text">服务元数据接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端代理生成"><span class="toc-number">3.3.</span> <span class="toc-text">客户端代理生成</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Endpoint配置"><span class="toc-number">3.3.1.</span> <span class="toc-text">Endpoint配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用"><span class="toc-number">3.4.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">3.5.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RemoteServiceOptions"><span class="toc-number">3.5.1.</span> <span class="toc-text">RemoteServiceOptions</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#多个远程服务端点"><span class="toc-number">3.5.2.</span> <span class="toc-text">多个远程服务端点</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/microservice/abp/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="ASP.NET Boilerplate应用与实践"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">ASP.NET Boilerplate应用与实践<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/microservice/abp.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-16 23:41:40" itemprop="dateCreated datePublished" datetime="2020-05-16T23:41:40+00:00">2020-05-16</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">10k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">18 分钟</span></span></span><span class="leancloud_visitors" id="/microservice/abp/" data-flag-title="ASP.NET Boilerplate应用与实践"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="text">微服务</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/ABP/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">ABP</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><blockquote>
+<p>ASP.NET Boilerplate是一个通用应用程序框架，专门为新的现代Web应用程序设计。它使用已经熟悉的工具并围绕它们实施最佳实践，以为您提供SOLID开发经验。</p>
+</blockquote>
+<blockquote>
+<p>官网：<a href="https://aspnetboilerplate.com/" target="_blank" rel="noopener">https://aspnetboilerplate.com/</a></p>
+</blockquote>
+<p><a href="https://uncmd.github.io/microservice/abp/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/abp-logo-long.png" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="如何获取客户端真实IP，而不是代理IP"><a href="#如何获取客户端真实IP，而不是代理IP" class="headerlink" title="如何获取客户端真实IP，而不是代理IP"></a>如何获取客户端真实IP，而不是代理IP</h2><p>自定义实现IClientInfoProvider接口，然后在模块中替换默认的实现</p>
+<p>从请求头中获取 X-Forwarded-For 信息，代理会把每层的请求信息存到 X-Forwarded-For 中，包括客户端信息</p>
+<pre><code>    public class HttpContextClientInfoProxyProvider : HttpContextClientInfoProvider, ITransientDependency
+    {
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        private readonly HttpContext _httpContext;
+
+        public HttpContextClientInfoProxyProvider(IHttpContextAccessor httpContextAccessor)
+            : base(httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+            _httpContext = httpContextAccessor.HttpContext;
+        }
+
+        protected override string GetClientIpAddress()
+        {
+            try
+            {
+                var httpContext = _httpContextAccessor.HttpContext ?? _httpContext;
+
+                var headers = httpContext?.Request.Headers;
+                if (headers != null &amp;&amp; headers.ContainsKey(&quot;X-Forwarded-For&quot;))
+                {
+                    httpContext.Connection.RemoteIpAddress = System.Net.IPAddress.Parse(headers[&quot;X-Forwarded-For&quot;].ToString().Split(&#39;,&#39;, StringSplitOptions.RemoveEmptyEntries)[0]);
+                }
+
+                return httpContext?.Connection?.RemoteIpAddress?.ToString();
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn(ex.ToString());
+            }
+
+            return null;
+        }
+    }</code></pre><p>在Web.Core模块的预加载事件PreInitialize中替换默认实现：</p>
+<pre><code> Configuration.ReplaceService&lt;IClientInfoProvider, HttpContextClientInfoProxyProvider&gt;(DependencyLifeStyle.Transient);</code></pre><blockquote>
+<p>特别注意：Ocelot网关默认不会存 X-Forwarded-For信息，需要在网关配置文件添加如下配置：</p>
+</blockquote>
+<pre class=" language-json"><code class="language-json">    <span class="token property">"UpstreamHeaderTransform"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"X-Forwarded-For"</span><span class="token operator">:</span> <span class="token string">"{RemoteIpAddress}"</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>这样审计日记获取的客户端IP地址才是真实的。</p>
+<h2 id="审计日志添加自定义数据（服务端地址）"><a href="#审计日志添加自定义数据（服务端地址）" class="headerlink" title="审计日志添加自定义数据（服务端地址）"></a>审计日志添加自定义数据（服务端地址）</h2><p>自己实现IAuditInfoProvider接口，可以继承默认的实现，然后重写Fill方法</p>
+<pre><code>    public class QmsAuditInfoProvider : DefaultAuditInfoProvider, ITransientDependency
+    {
+        private readonly IConfigurationRoot _appConfiguration;
+
+        public QmsAuditInfoProvider(IConfigurationRoot configurationRoot)
+        {
+            _appConfiguration = configurationRoot;
+        }
+
+        public override void Fill(AuditInfo auditInfo)
+        {
+            base.Fill(auditInfo);
+
+            auditInfo.CustomData = $&quot;服务地址：{_appConfiguration[&quot;App:ServerRootAddress&quot;]}&quot;;
+        }
+    }</code></pre><p>这里注入了配置文件，从配置文件读取服务地址，然后保存到审计日志的CustomData字段</p>
+<p>然后在Web.Host模块的PreInitialize方法中替换IAuditInfoProvider接口的默认实现</p>
+<pre><code>Configuration.ReplaceService(typeof(Abp.Auditing.IAuditInfoProvider), () =&gt;
+{
+    IocManager.Register&lt;IAuditInfoProvider, AssemblyReportAuditInfoProvider&gt;(DependencyLifeStyle.Transient);
+});</code></pre><h2 id="动态C-API客户端"><a href="#动态C-API客户端" class="headerlink" title="动态C# API客户端"></a>动态C# API客户端</h2><p>参考Abp vnext 提供动态 C# API客户端功能</p>
+<p>可以自动创建C# API 客户端代理来调用远程HTTP服务(REST APIS).通过这种方式,你不需要通过 HttpClient 或者其他低级的HTTP功能调用远程服务并获取数据.</p>
+<h3 id="服务接口"><a href="#服务接口" class="headerlink" title="服务接口"></a>服务接口</h3><p>你的service或controller需要实现一个在服务端和客户端共享的接口.因此,首先需要在一个共享的类库项目中定义一个服务接口.例如:</p>
+<pre><code>public interface IBookAppService : IApplicationService
+{
+    Task&lt;List&lt;BookDto&gt;&gt; GetListAsync();
+}</code></pre><p>为了能自动被发现,你的接口需要实现IApplicationService接口.</p>
+<h3 id="服务元数据接口"><a href="#服务元数据接口" class="headerlink" title="服务元数据接口"></a>服务元数据接口</h3><p>客户端调用服务时，需要知道服务接口的元数据，Core.Http通过AbpApiDefinitionController控制器发布服务元数据，如下：</p>
+<pre><code>[Route(&quot;api/abp/api-definition&quot;)]
+public class AbpApiDefinitionController : AbpController, IRemoteService
+{
+    private readonly IApiDescriptionModelProvider _modelProvider;
+
+    public AbpApiDefinitionController(IApiDescriptionModelProvider modelProvider)
+    {
+        _modelProvider = modelProvider;
+    }
+
+    [HttpGet]
+    public ApplicationApiDescriptionModel Get()
+    {
+        return _modelProvider.CreateApiModel();
+    }
+}</code></pre><p>路由地址为 api/abp/api-definition，通过这个接口访问各个微服务的接口元数据</p>
+<p>在 Web.Core项目中添加 AbpHttpModule 依赖，自动注册 AbpApiDefinitionController 控制器</p>
+<pre><code>[DependsOn(typeof(AbpHttpModule))] //添加依赖
+public class MyWebCoreModule : AbpModule
+{
+}</code></pre><h3 id="客户端代理生成"><a href="#客户端代理生成" class="headerlink" title="客户端代理生成"></a>客户端代理生成</h3><p>首先将 Core.Http.Client 添加到客户端项目中</p>
+<p>然后给你的模块添加 AbpHttpClientModule 依赖</p>
+<pre><code>[DependsOn(typeof(AbpHttpClientModule))] //添加依赖
+public class MyClientAppModule : AbpModule
+{
+}</code></pre><p>现在，已经可以创建客户端代理了，例如：</p>
+<pre><code>[DependsOn(
+    typeof(AbpHttpClientModule), //用来创建客户端代理
+    typeof(BookStoreApplicationModule) //包含应用服务接口
+    )]
+public class MyClientAppModule : AbpModule
+{
+    public override void ConfigureServices(ServiceConfigurationContext context)
+    {
+        var service = IocManager.Resolve&lt;IServiceCollection&gt;();
+
+        //创建动态客户端代理
+        service.AddHttpClientProxies(typeof(BookStoreApplicationModule).Assembly, RemoteServiceName);
+    }
+}
+</code></pre><p>AddHttpClientproxies方法获得一个程序集,找到这个程序集中所有的服务接口,创建并注册代理类.</p>
+<p>注意：需要在 Starup 中注册 IServiceCollection，如：</p>
+<pre><code>// Configure Abp and Dependency Injection
+return services.AddAbp&lt;QMSWebHostModule&gt;(
+    // Configure Log4Net logging
+    options =&gt;
+    {
+        options.IocManager.IocContainer.AddFacility&lt;LoggingFacility&gt;(
+            f =&gt; f.UseAbpLog4Net().WithConfig(&quot;log4net.config&quot;)
+        );
+
+        options.IocManager.Register(typeof(IServiceCollection), services.GetType());
+    }
+);</code></pre><h4 id="Endpoint配置"><a href="#Endpoint配置" class="headerlink" title="Endpoint配置"></a>Endpoint配置</h4><p>appsettings.json文件中的RemoteServices节点被用来设置默认的服务地址.下面是最简单的配置:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"RemoteServices"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"Default"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"BaseUrl"</span><span class="token operator">:</span> <span class="token string">"http://localhost:53929/"</span>
+    <span class="token punctuation">}</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>可以很直接地使用.只需要在你的客户端程序中注入服务接口:</p>
+<pre><code>public class MyService : ITransientDependency
+{
+    private readonly IBookAppService _bookService;
+
+    public MyService(IBookAppService bookService)
+    {
+        _bookService = bookService;
+    }
+
+    public async Task DoIt()
+    {
+        var books = await _bookService.GetListAsync();
+        foreach (var book in books)
+        {
+            Console.WriteLine($&quot;[BOOK {book.Id}] Name={book.Name}&quot;);
+        }
+    }
+}
+</code></pre><p>本例注入了上面定义的IBookAppService服务接口.当客户端调用服务方法的时候动态客户端代理就会创建一个HTTP调用.</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="RemoteServiceOptions"><a href="#RemoteServiceOptions" class="headerlink" title="RemoteServiceOptions"></a>RemoteServiceOptions</h4><p>默认情况下RemoteServiceOptions从appsettings.json获取.或者,你可以使用Configure方法来设置或重写它.如:</p>
+<pre><code>public override void Initialize()
+{
+    AbpConfigurationExtensions.ConfigureOptions&lt;AbpRemoteServiceOptions&gt;(option =&gt;
+    {
+        option.RemoteServices.Default = new RemoteServiceConfiguration(&quot;/&quot;);
+    });
+}
+</code></pre><h4 id="多个远程服务端点"><a href="#多个远程服务端点" class="headerlink" title="多个远程服务端点"></a>多个远程服务端点</h4><p>上面的例子已经配置了”Default”远程服务端点.你可能需要为不同的服务创建不同的端点.(就像在微服务方法中一样,每个微服务具有不同的端点).在这种情况下,你可以在你的配置文件中添加其他的端点:</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"RemoteServices"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"Default"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"BaseUrl"</span><span class="token operator">:</span> <span class="token string">"http://localhost:53929/"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">"BookStore"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"BaseUrl"</span><span class="token operator">:</span> <span class="token string">"http://localhost:48392/"</span>
+    <span class="token punctuation">}</span> 
+  <span class="token punctuation">}</span> 
+<span class="token punctuation">}</span></code></pre>
+<p>AddHttpClientProxies方法有一个可选的参数来定义远程服务的名字:</p>
+<pre><code>context.Services.AddHttpClientProxies(
+    typeof(BookStoreApplicationModule).Assembly,
+    remoteServiceName: &quot;BookStore&quot;
+);</code></pre><p>remoteServiceName参数会匹配通过RemoteServiceOptions配置的服务端点.如果BookStore端点没有定义就会使用默认的Default端点.</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/microservice/abp/" title="ASP.NET Boilerplate应用与实践">http://uncmd.github.io/microservice/abp/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/life/hexo-blog/" rel="prev" title="Hexo博客搭建"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Hexo博客搭建</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/microservice/abpvnext/" rel="next" title="ABP VNext"><span class="post-nav-text">ABP VNext</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+ASP.NET Boilerplate应用与实践" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

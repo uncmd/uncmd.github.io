@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="EntityFramworkCore相关"><meta name="keywords" content="ORM"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>EntityFramworkCore相关 | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#EntityFramworkCore介绍"><span class="toc-number">1.</span> <span class="toc-text">EntityFramworkCore介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EntityFramworkCore使用"><span class="toc-number">2.</span> <span class="toc-text">EntityFramworkCore使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据迁移常用命令："><span class="toc-number">2.1.</span> <span class="toc-text">数据迁移常用命令：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EntityFramworkCore使用Oracle"><span class="toc-number">3.</span> <span class="toc-text">EntityFramworkCore使用Oracle</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/microservice/efcore/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="EntityFramworkCore相关"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">EntityFramworkCore相关<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/microservice/efcore.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-15 21:41:40" itemprop="dateCreated datePublished" datetime="2020-05-15T21:41:40+00:00">2020-05-15</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">2.5k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">5 分钟</span></span></span><span class="leancloud_visitors" id="/microservice/efcore/" data-flag-title="EntityFramworkCore相关"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="text">微服务</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/ORM/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">ORM</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><blockquote>
+<p>Entity Framework (EF) Core 是轻量化、可扩展、开源和跨平台版的常用 Entity Framework 数据访问技术。</p>
+</blockquote>
+<blockquote>
+<p>官网文档：<a href="https://docs.microsoft.com/zh-cn/ef/core/" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/ef/core/</a></p>
+</blockquote>
+<p><a href="https://uncmd.github.io/microservice/efcore/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/efcore.jpg" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="EntityFramworkCore介绍"><a href="#EntityFramworkCore介绍" class="headerlink" title="EntityFramworkCore介绍"></a>EntityFramworkCore介绍</h2><p>EF Core 可用作对象关系映射程序 (O/RM)，以便于 .NET 开发人员能够使用 .NET 对象来处理数据库，这样就不必经常编写大部分数据访问代码了。</p>
+<h2 id="EntityFramworkCore使用"><a href="#EntityFramworkCore使用" class="headerlink" title="EntityFramworkCore使用"></a>EntityFramworkCore使用</h2><h3 id="数据迁移常用命令："><a href="#数据迁移常用命令：" class="headerlink" title="数据迁移常用命令："></a>数据迁移常用命令：</h3><p>安装ef工具</p>
+<pre class=" language-bash"><code class="language-bash">dotnet tool <span class="token function">install</span> -g dotnet-ef</code></pre>
+<p>创建迁移</p>
+<pre class=" language-bash"><code class="language-bash">Add-Migration InitialCreate
+
+dotnet ef migrations add InitialCreate</code></pre>
+<p>更新数据库</p>
+<pre class=" language-bash"><code class="language-bash">Update-Database
+
+dotnet ef database update</code></pre>
+<p>删除迁移</p>
+<pre class=" language-bash"><code class="language-bash">Remove-Migration
+
+dotnet ef migrations remove</code></pre>
+<p>还原迁移</p>
+<pre class=" language-bash"><code class="language-bash">Update-Database LastGoodMigration
+
+dotnet ef database update LastGoodMigration</code></pre>
+<p>生成SQL脚本</p>
+<pre class=" language-bash"><code class="language-bash">Script-Migration
+
+dotnet ef migrations script</code></pre>
+<p>在运行时应用迁移</p>
+<pre class=" language-csharp"><code class="language-csharp">myDbContext<span class="token punctuation">.</span>Database<span class="token punctuation">.</span><span class="token function">Migrate</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h2 id="EntityFramworkCore使用Oracle"><a href="#EntityFramworkCore使用Oracle" class="headerlink" title="EntityFramworkCore使用Oracle"></a>EntityFramworkCore使用Oracle</h2><p>从NuGet安装包：Oracle.EntityFramworkCore</p>
+<p>Oracle数据库的默认事务级别<br>在PreInitialize事件中设置工作单元的默认事务级别为 ReadCommitted</p>
+<blockquote>
+<p>Configuration.UnitOfWork.IsolationLevel = System.Transactions.IsolationLevel.ReadCommitted;</p>
+</blockquote>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/microservice/efcore/" title="EntityFramworkCore相关">http://uncmd.github.io/microservice/efcore/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/microservice/abpvnext/" rel="prev" title="ABP VNext"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">ABP VNext</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/microservice/jenkins/" rel="next" title="Jenkins - 持续集成引擎"><span class="post-nav-text">Jenkins - 持续集成引擎</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+EntityFramworkCore相关" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

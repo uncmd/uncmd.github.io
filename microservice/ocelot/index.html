@@ -1,0 +1,173 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content=".NET Core开源API网关 – Ocelot"><meta name="keywords" content="网关"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>.NET Core开源API网关 – Ocelot | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、什么是API网关"><span class="toc-number">1.</span> <span class="toc-text">一、什么是API网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、Ocelot介绍"><span class="toc-number">2.</span> <span class="toc-text">二、Ocelot介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、Ocelot使用"><span class="toc-number">3.</span> <span class="toc-text">三、Ocelot使用</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/microservice/ocelot/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content=".NET Core开源API网关 – Ocelot"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">.NET Core开源API网关 – Ocelot<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/microservice/ocelot.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-12 23:41:40" itemprop="dateCreated datePublished" datetime="2020-05-12T23:41:40+00:00">2020-05-12</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">14k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">25 分钟</span></span></span><span class="leancloud_visitors" id="/microservice/ocelot/" data-flag-title=".NET Core开源API网关 – Ocelot"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="text">微服务</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E7%BD%91%E5%85%B3/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">网关</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><blockquote>
+<p>Ocelot是一个.NET API网关。该项目面向使用.NET运行微型服务/面向服务的体系结构的人员，这些体系结构需要统一的系统入口点。但是，它可以与任何使用HTTP并在ASP.NET Core支持的平台上运行的东西一起使用。</p>
+</blockquote>
+<blockquote>
+<p>官网文档：<a href="https://ocelot.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://ocelot.readthedocs.io/en/latest/</a></p>
+</blockquote>
+<p><a href="https://uncmd.github.io/microservice/ocelot/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/ocelot.png" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="一、什么是API网关"><a href="#一、什么是API网关" class="headerlink" title="一、什么是API网关"></a>一、什么是API网关</h2><p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/apigateway.png" alt="" loading="lazy"></p>
+<blockquote>
+<p>API网关是所有应用的统一入口，一般放在微服务的最前端。从面向对象设计的角度看，它与外观模式类似。API网关封装了系统内部架构，为每个客户端提供一个定制的API，简化了客户端的调用。API网关的核心要点是：所有的客户端和消费端都通过统一的网关接入微服务，在网关层处理所有的非业务功能（比如负载均衡、流控、熔断、验证、鉴权、监控等等）。</p>
+</blockquote>
+<p><strong>参考资料</strong></p>
+<blockquote>
+<p><a href="https://www.cnblogs.com/savorboard/p/api-gateway.html" target="_blank" rel="noopener">《谈谈微服务中的 API 网关（API Gateway）》</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/edisonchou/p/api_gateway_ocelot_foundation_01.html" target="_blank" rel="noopener">.NET Core微服务之基于Ocelot实现API网关服务</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://cloud.tencent.com/developer/news/257354" target="_blank" rel="noopener">浅谈微服务之API网关</a></p>
+</blockquote>
+<h2 id="二、Ocelot介绍"><a href="#二、Ocelot介绍" class="headerlink" title="二、Ocelot介绍"></a>二、Ocelot介绍</h2><p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/ocelot.png" alt="" loading="lazy"></p>
+<blockquote>
+<p>Ocelot是一个.NET API网关。该项目针对的是使用.NET运行面向微服务/面向服务的体系结构的人，这些体系结构需要统一的入口点。</p>
+</blockquote>
+<p><strong>OCelot特征</strong></p>
+<ul>
+<li>路由</li>
+<li>请求聚合</li>
+<li>Consul和Eureka的服务发现</li>
+<li>Kubernetes</li>
+<li>WebSockets</li>
+<li>认证</li>
+<li>授权</li>
+<li>限速</li>
+<li>高速缓存</li>
+<li>重试策略/ QoS</li>
+<li>负载均衡</li>
+<li>记录/跟踪/关联</li>
+<li>标头/查询字符串/声明转换</li>
+<li>自定义中间件/委托处理程序</li>
+<li>配置/管理REST API</li>
+</ul>
+<p><a href="https://github.com/ThreeMammals/Ocelot" target="_blank" rel="noopener">项目地址github</a></p>
+<h2 id="三、Ocelot使用"><a href="#三、Ocelot使用" class="headerlink" title="三、Ocelot使用"></a>三、Ocelot使用</h2><p>Ocelot有许多特性，先看看基础配置</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"ReRoutes"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"UpstreamPathTemplate"</span><span class="token operator">:</span> <span class="token string">"/{everything}"</span><span class="token punctuation">,</span>
+      <span class="token property">"UpstreamHttpMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"Get"</span><span class="token punctuation">,</span> <span class="token string">"Post"</span><span class="token punctuation">,</span> <span class="token string">"Delete"</span><span class="token punctuation">,</span> <span class="token string">"Put"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamPathTemplate"</span><span class="token operator">:</span> <span class="token string">"/{everything}"</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamScheme"</span><span class="token operator">:</span> <span class="token string">"http"</span><span class="token punctuation">,</span>
+      <span class="token property">"LoadBalancer"</span><span class="token operator">:</span> <span class="token string">"RoundRobin"</span><span class="token punctuation">,</span>
+      <span class="token property">"UpstreamHeaderTransform"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"X-Forwarded-For"</span><span class="token operator">:</span> <span class="token string">"{RemoteIpAddress}"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamHostAndPorts"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+          <span class="token punctuation">{</span>
+              <span class="token property">"Host"</span><span class="token operator">:</span> <span class="token string">"localhost"</span><span class="token punctuation">,</span>
+              <span class="token property">"Port"</span><span class="token operator">:</span> <span class="token number">21021</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"GlobalConfiguration"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"BaseUrl"</span><span class="token operator">:</span> <span class="token string">"http://localhost:9000"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>进阶配置</p>
+<pre class=" language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"ReRoutes"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"UpstreamPathTemplate"</span><span class="token operator">:</span> <span class="token string">"/{everything}"</span><span class="token punctuation">,</span>
+      <span class="token property">"UpstreamHttpMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"Get"</span><span class="token punctuation">,</span> <span class="token string">"Post"</span><span class="token punctuation">,</span> <span class="token string">"Delete"</span><span class="token punctuation">,</span> <span class="token string">"Put"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamPathTemplate"</span><span class="token operator">:</span> <span class="token string">"/{everything}"</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamScheme"</span><span class="token operator">:</span> <span class="token string">"http"</span><span class="token punctuation">,</span>
+      <span class="token property">"LoadBalancer"</span><span class="token operator">:</span> <span class="token string">"RoundRobin"</span><span class="token punctuation">,</span>
+      <span class="token property">"SwaggerKey"</span><span class="token operator">:</span> <span class="token string">"swg1"</span><span class="token punctuation">,</span>
+      <span class="token property">"UpstreamHeaderTransform"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"X-Forwarded-For"</span><span class="token operator">:</span> <span class="token string">"{RemoteIpAddress}"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"ServiceName"</span><span class="token operator">:</span> <span class="token string">"ServiceA"</span><span class="token punctuation">,</span> // 服务名称，要和 Consul 的服务名称一致
+      <span class="token property">"UseServiceDiscovery"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    <span class="token punctuation">{</span>
+      <span class="token property">"UpstreamPathTemplate"</span><span class="token operator">:</span> <span class="token string">"/aqr/{everything}"</span><span class="token punctuation">,</span>
+      <span class="token property">"UpstreamHttpMethod"</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"Get"</span><span class="token punctuation">,</span> <span class="token string">"Post"</span><span class="token punctuation">,</span> <span class="token string">"Delete"</span><span class="token punctuation">,</span> <span class="token string">"Put"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamPathTemplate"</span><span class="token operator">:</span> <span class="token string">"/{everything}"</span><span class="token punctuation">,</span>
+      <span class="token property">"DownstreamScheme"</span><span class="token operator">:</span> <span class="token string">"http"</span><span class="token punctuation">,</span>
+      <span class="token property">"LoadBalancer"</span><span class="token operator">:</span> <span class="token string">"RoundRobin"</span><span class="token punctuation">,</span>
+      <span class="token property">"SwaggerKey"</span><span class="token operator">:</span> <span class="token string">"swg2"</span><span class="token punctuation">,</span>
+      <span class="token property">"UpstreamHeaderTransform"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"X-Forwarded-For"</span><span class="token operator">:</span> <span class="token string">"{RemoteIpAddress}"</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">"ServiceName"</span><span class="token operator">:</span> <span class="token string">"ServiceB"</span><span class="token punctuation">,</span> // 服务名称，要和 Consul 的服务名称一致
+      <span class="token property">"UseServiceDiscovery"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"SwaggerEndPoints"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"Key"</span><span class="token operator">:</span> <span class="token string">"swg1"</span><span class="token punctuation">,</span> // 和 ReRoutes 中的 SwaggerKey 相同
+      <span class="token property">"Config"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">"Name"</span><span class="token operator">:</span> <span class="token string">"ServiceA API"</span><span class="token punctuation">,</span>
+          <span class="token property">"Version"</span><span class="token operator">:</span> <span class="token string">"v1"</span><span class="token punctuation">,</span>
+          <span class="token property">"Url"</span><span class="token operator">:</span> <span class="token string">"http://localhost:21021/swagger/v1/swagger.json"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"Key"</span><span class="token operator">:</span> <span class="token string">"swg2"</span><span class="token punctuation">,</span> // 和 ReRoutes 中的 SwaggerKey 相同
+      <span class="token property">"Config"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>
+          <span class="token property">"Name"</span><span class="token operator">:</span> <span class="token string">"ServiceB API"</span><span class="token punctuation">,</span>
+          <span class="token property">"Version"</span><span class="token operator">:</span> <span class="token string">"v1"</span><span class="token punctuation">,</span>
+          <span class="token property">"Url"</span><span class="token operator">:</span> <span class="token string">"http://localhost:21031/swagger/v1/swagger.json"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"GlobalConfiguration"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"BaseUrl"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+    <span class="token property">"ServiceDiscoveryProvider"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"Host"</span><span class="token operator">:</span> <span class="token string">"172.16.96.107"</span><span class="token punctuation">,</span>
+      <span class="token property">"Port"</span><span class="token operator">:</span> <span class="token number">8500</span>
+      <span class="token property">"ConfigurationKey"</span><span class="token operator">:</span> <span class="token string">"Oceolot_A"</span> //存储在Consul上的Key
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/microservice/ocelot/" title=".NET Core开源API网关 – Ocelot">http://uncmd.github.io/microservice/ocelot/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/microservice/metrics/" rel="prev" title="App.Metrics+InfluxDB+Grafana实现统一性能监控"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">App.Metrics+InfluxDB+Grafana实现统一性能监控</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/microservice/oracle/" rel="next" title="Oracle数据库"><span class="post-nav-text">Oracle数据库</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+.NET Core开源API网关 – Ocelot" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

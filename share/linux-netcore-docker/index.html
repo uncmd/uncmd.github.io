@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Linux 部署 .NET Core（容器部署）"><meta name="keywords" content="Linux,Docker,.NET Core"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>Linux 部署 .NET Core（容器部署） | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Docker"><span class="toc-number">1.</span> <span class="toc-text">安装 Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载-Docker"><span class="toc-number">2.</span> <span class="toc-text">卸载 Docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dockerfile-使用介绍"><span class="toc-number">3.</span> <span class="toc-text">Dockerfile 使用介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile-概念"><span class="toc-number">3.1.</span> <span class="toc-text">Dockerfile 概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dockerfile-文件格式"><span class="toc-number">3.2.</span> <span class="toc-text">Dockerfile 文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构建镜像"><span class="toc-number">3.3.</span> <span class="toc-text">构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单示例"><span class="toc-number">3.4.</span> <span class="toc-text">简单示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#准备-net-core-web-程序"><span class="toc-number">4.</span> <span class="toc-text">准备 .net core web 程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-常用命令"><span class="toc-number">5.</span> <span class="toc-text">Docker 常用命令</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/share/linux-netcore-docker/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="Linux 部署 .NET Core（容器部署）"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">Linux 部署 .NET Core（容器部署）<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/share/linux-netcore-docker.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-31 09:24:40" itemprop="dateCreated datePublished" datetime="2020-05-31T09:24:40+00:00">2020-05-31</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">18k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">32 分钟</span></span></span><span class="leancloud_visitors" id="/share/linux-netcore-docker/" data-flag-title="Linux 部署 .NET Core（容器部署）"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="text">分享</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/Linux/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Linux</span></a><a class="tag" href="/tags/Docker/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">Docker</span></a><a class="tag" href="/tags/NET-Core/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">.NET Core</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><blockquote>
+<p>在腾讯云 CentOS 部署运行 .Net core 应用</p>
+</blockquote>
+<p><strong>运行环境</strong></p>
+<ul>
+<li><p>腾讯云</p>
+</li>
+<li><p>CentOS 7.5 64位</p>
+</li>
+<li><p>1核 2GB内存 1M带宽</p>
+</li>
+<li><p>docker：19.03.10</p>
+</li>
+</ul>
+<p><a href="https://uncmd.github.io/share/linux-netcore-docker/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/linux-netcore-docker-face.jpg" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h2><ul>
+<li>Docker 软件包已经包括在默认的 CentOS-Extras 软件源里，所以只需运行下面的yum命令</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">yum <span class="token function">install</span> docker</code></pre>
+<ul>
+<li>安装完成后，使用下面的命令来启动 docker 服务，并将其设置为开机启动</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">systemctl start docker.service
+systemctl <span class="token function">enable</span> docker.service</code></pre>
+<ul>
+<li>测试</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">docker version</code></pre>
+<p>返回如下版本信息，说明 docker 安装成功</p>
+<p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-version.jpg" alt="" loading="lazy"><em><code>docker version</code></em></p>
+<ul>
+<li>使用中国官方镜像加速，修改 docker 配置文件为</li>
+</ul>
+<pre><code>vi  /etc/docker/daemon.json
+{
+    &quot;registry-mirrors&quot;: [&quot;https://registry.docker-cn.com&quot;],
+    &quot;live-restore&quot;: true
+}</code></pre><ul>
+<li>运行 Hello World</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">docker pull library/hello-world <span class="token comment" spellcheck="true"># 拉取hello-world镜像</span>
+
+docker images <span class="token comment" spellcheck="true"># 查看本地镜像</span>
+<span class="token comment" spellcheck="true"># 显示结果</span>
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+docker.io/hello-world   latest              bf756fb1ae65        4 months ago        13.3 kB
+
+docker run hello-world <span class="token comment" spellcheck="true"># 运行 hello-world 镜像</span>
+<span class="token comment" spellcheck="true"># 显示结果</span>
+Hello from Docker<span class="token operator">!</span>
+This message shows that your installation appears to be working correctly.
+<span class="token punctuation">..</span>.</code></pre>
+<h2 id="卸载-Docker"><a href="#卸载-Docker" class="headerlink" title="卸载 Docker"></a>卸载 Docker</h2><p>1、查询安装过的包</p>
+<pre class=" language-bash"><code class="language-bash">yum list installed <span class="token operator">|</span> <span class="token function">grep</span> docker</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-uninstall-showinstalled.jpg" alt="" loading="lazy"></p>
+<p>2、删除安装的软件包</p>
+<pre class=" language-bash"><code class="language-bash">yum -y remove containerd.io.x86_64 // 依赖删除 docker-ce.x86_64
+yum -y remove docker-ce-cli.x86_64</code></pre>
+<p>3、删除镜像容器等</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">rm</span> -rf /var/lib/docker</code></pre>
+<h2 id="Dockerfile-使用介绍"><a href="#Dockerfile-使用介绍" class="headerlink" title="Dockerfile 使用介绍"></a>Dockerfile 使用介绍</h2><p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/DockerFile.png" alt="" loading="lazy"><em>Docker 镜像、容器和 Dockerfile 三者之间的关系</em></p>
+<p>通过上图可以看出使用 Dockerfile 定义镜像，运行镜像启动容器。</p>
+<h3 id="Dockerfile-概念"><a href="#Dockerfile-概念" class="headerlink" title="Dockerfile 概念"></a>Dockerfile 概念</h3><p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<p>镜像的定制实际上就是定制每一层所添加的配置、文件。如果我们可以把每一层修改、安装、构建、操作的命令都写入一个脚本，用这个脚本来构建、定制镜像，那么之前提及的无法重复的问题、镜像构建透明性的问题、体积的问题就都会解决。这个脚本就是 Dockerfile。</p>
+<p>Dockerfile 是一个文本文件，其内包含了一条条的指令(Instruction)，每一条指令构建一层，因此每一条指令的内容，就是描述该层应当如何构建。有了 Dockerfile，当我们需要定制自己额外的需求时，只需在 Dockerfile 上添加或者修改指令，重新生成 image 即可，省去了敲命令的麻烦。</p>
+<h3 id="Dockerfile-文件格式"><a href="#Dockerfile-文件格式" class="headerlink" title="Dockerfile 文件格式"></a>Dockerfile 文件格式</h3><p>Dockerfile 文件格式如下</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">##  Dockerfile文件格式</span>
+
+<span class="token comment" spellcheck="true"># 1、指定基于哪个基础镜像，必须作为第一个命令！</span>
+<span class="token comment" spellcheck="true"># 格式：FROM &lt;image> 或者  FROM &lt;image>:&lt;tag></span>
+FROM microsoft/dotnet:3.1-aspnetcore-runtime
+
+<span class="token comment" spellcheck="true"># 2、维护者信息</span>
+<span class="token comment" spellcheck="true"># 格式：  MAINTAIN &lt;name> </span>
+MAINTAINER docker_user docker_user@email.com
+
+<span class="token comment" spellcheck="true"># 3、镜像操作指令！</span>
+<span class="token comment" spellcheck="true"># 格式：RUN &lt;command>  或者 RUN [“executable”, “param1”, “param2”]</span>
+RUN  yum <span class="token function">install</span> httpd
+RUN <span class="token punctuation">[</span><span class="token string">"/bin/bash"</span>, <span class="token string">"-c"</span>, <span class="token string">"echo hello"</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 4. 构建容器后调用，容器启动后才能调用！</span>
+<span class="token comment" spellcheck="true"># 三种格式：CMD ["executable", "param1", "param2"]、CMD command param1 param2、CMD ["param1", "param2"]</span>
+<span class="token comment" spellcheck="true"># RUN和CMD看起来挺像，但是CMD用来指定容器启动时用到的命令，只能有一条。</span>
+CMD <span class="token punctuation">[</span><span class="token string">"/bin/bash"</span>, <span class="token string">"/usr/local/nginx/sbin/nginx"</span>, <span class="token string">"-c"</span>, <span class="token string">"/usr/local/nginx/conf/nginx.conf"</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 5. EXPOSE：指定于外界交互的端口！</span>
+<span class="token comment" spellcheck="true"># 格式： EXPOSE &lt;port> [&lt;port>...] </span>
+EXPOSE 22 80 8443 <span class="token comment" spellcheck="true"># 这个用来指定要映射出去的端口，比如容器内部我们启动了sshd和nginx，所以我们需要把22和80端口暴漏出去。</span>
+<span class="token comment" spellcheck="true"># 这个需要配合-P（大写）来工作，也就是说在启动容器时，需要加上-P，让它自动分配。如果想指定具体的端口，也可以使用-p（小写）来指定。</span>
+
+<span class="token comment" spellcheck="true"># 6. ENV：设置环境变量！</span>
+<span class="token comment" spellcheck="true"># 格式： ENV  &lt;key> &lt;value></span>
+ENV PATH /usr/local/mysql/bin:<span class="token variable">$PATH</span> <span class="token comment" spellcheck="true"># 它主要是为后续的RUN指令提供一个环境变量，我们也可以定义一些自定义的变量</span>
+ENV ASPNETCORE_ENVIRONMENT <span class="token string">"Development"</span>
+
+<span class="token comment" spellcheck="true"># 7. ADD： 将本地文件添加到容器中，tar类型文件会自动解压(网络压缩资源不会被解压)，可以访问网络资源，类似wget！</span>
+<span class="token comment" spellcheck="true"># 格式： add &lt;src> &lt;dest>将本地的一个文件或目录拷贝到容器的某个目录里。 其中src为Dockerfile所在目录的相对路径，它也可以是一个url。</span>
+ADD <span class="token operator">&lt;</span>conf/vhosts<span class="token operator">></span> <span class="token operator">&lt;</span>/usr/local/nginx/conf<span class="token operator">></span>
+
+<span class="token comment" spellcheck="true"># 8. COPY：功能类似ADD，但是不能自动解压文件，也不能访问网络资源！</span>
+<span class="token comment" spellcheck="true"># 格式：和ADD一样，不同的是，它不支持url</span>
+COPY <span class="token punctuation">..</span>
+
+<span class="token comment" spellcheck="true"># 9. ENTRYPOINT：配置容器，使其可执行化。配合CMD可省去"application"，只使用参数！</span>
+<span class="token comment" spellcheck="true"># 格式：类似CMD</span>
+<span class="token comment" spellcheck="true"># 容器启动时要执行的命令，它和CMD很像，也是只有一条生效，如果写多个只有最后一条有效。</span>
+<span class="token comment" spellcheck="true"># CMD不同是：CMD 是可以被 docker run 指令覆盖的，而ENTRYPOINT不能覆盖。比如，容器名字为xiaoming</span>
+<span class="token comment" spellcheck="true"># 我们在Dockerfile中指定如下CMD：</span>
+<span class="token comment" spellcheck="true"># CMD ["/bin/echo", "test"]</span>
+<span class="token comment" spellcheck="true"># 启动容器的命令是  docker run xiaoming 这样会输出 test</span>
+<span class="token comment" spellcheck="true"># 假如启动容器的命令是 docker run -it xiaoming  /bin/bash  什么都不会输出</span>
+<span class="token comment" spellcheck="true"># ENTRYPOINT不会被覆盖，而且会比CMD或者docker run指定的命令要靠前执行</span>
+<span class="token comment" spellcheck="true"># ENTRYPOINT ["echo", "test"]</span>
+<span class="token comment" spellcheck="true"># docker run -it xiaoming  123</span>
+<span class="token comment" spellcheck="true"># 则会输出 test  123 ，这相当于要执行命令  echo test  123 </span>
+ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"dotnet"</span>, <span class="token string">"InternalGateway.dll"</span><span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true"># 10. VOLUME：用于持久化目录！</span>
+<span class="token comment" spellcheck="true"># 格式： VOLUME ["/data"]</span>
+<span class="token comment" spellcheck="true"># 创建一个可以从本地主机或其他容器挂载的挂载点。</span>
+
+<span class="token comment" spellcheck="true"># 11. USER：指定容器运行用户，一般不指定默认ROOT用户！</span>
+<span class="token comment" spellcheck="true"># 格式：USER daemon</span>
+USER username
+
+<span class="token comment" spellcheck="true"># 12. WORKDIR：  工作目录，类似CD命令！</span>
+<span class="token comment" spellcheck="true"># 格式： WORKDIR  /path/to/workdir</span>
+<span class="token comment" spellcheck="true"># 为后续的RUN、CMD或者ENTRYPOINT指定工作目录</span>
+WORKDIR /app
+
+<span class="token comment" spellcheck="true"># 13. LABEL 为镜像添加元数据，以键值对的形式指定</span>
+<span class="token comment" spellcheck="true"># 格式：LABEL &lt;key>=&lt;value> &lt;key>=&lt;value> &lt;key>=&lt;value> ...</span>
+<span class="token comment" spellcheck="true"># 使用LABEL指定元数据时，一条LABEL指定可以指定一或多条元数据，指定多条元数据时不同元数据之间通过空格分隔。</span>
+<span class="token comment" spellcheck="true"># 推荐将所有的元数据通过一条LABEL指令指定，以免生成过多的中间镜像。</span>
+LABEL version<span class="token operator">=</span><span class="token string">"1.0"</span> description<span class="token operator">=</span><span class="token string">"这是一个Web服务器"</span> by<span class="token operator">=</span><span class="token string">"IT笔录"</span>
+
+<span class="token comment" spellcheck="true"># 14. ARG 指定传递给构建运行时的变量</span>
+<span class="token comment" spellcheck="true"># 语法：ARG &lt;name>[=&lt;default value>]</span>
+<span class="token comment" spellcheck="true"># 在使用 docker build 构建镜像时，可以通过 --build-arg &lt;varname>=&lt;value> 参数来指定或重设置这些变量的值</span>
+ARG build_user<span class="token operator">=</span>IT笔录
+LABEL user<span class="token operator">=</span><span class="token variable">$build_user</span>
+
+<span class="token comment" spellcheck="true"># 15. ONBUILD 设置镜像触发器</span>
+<span class="token comment" spellcheck="true"># 语法：ONBUILD [INSTRUCTION]</span>
+ONBUILD ADD <span class="token keyword">.</span> /app/src
+ONBUILD RUN /usr/local/bin/python-build --dir /app/src
+
+<span class="token comment" spellcheck="true"># 16. SHELL 设置执行命令所使用的默认shell类型</span>
+<span class="token comment" spellcheck="true"># 语法：SHELL ["executable", "parameters"]</span>
+<span class="token comment" spellcheck="true"># 常用于 Windows 环境</span>
+SHELL <span class="token punctuation">[</span><span class="token string">"powershell"</span>, <span class="token string">"-command"</span><span class="token punctuation">]</span></code></pre>
+<p>Dockerfile 分为四部分：<strong>基础镜像信息、维护者信息、镜像操作指令、容器启动执行指令</strong>。一开始必须要指明所基于的镜像名称，接下来一般会说明维护者信息；后面则是镜像操作指令，例如 RUN 指令。每执行一条RUN 指令，镜像添加新的一层，并提交；最后是 CMD 指令，来指明运行容器时的操作命令。</p>
+<h3 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h3><p>docker build 命令会根据 Dockerfile 文件及上下文构建新 Docker 镜像</p>
+<pre class=" language-bash"><code class="language-bash">docker build <span class="token keyword">.</span>
+docker build -t nginx/v3 <span class="token keyword">.</span> <span class="token comment" spellcheck="true"># 镜像标签</span>
+docker build -t nginx/v3:1.0.2 -t nginx/v3:latest <span class="token keyword">.</span>  <span class="token comment" spellcheck="true"># 可以使用多个镜像标签</span></code></pre>
+<h3 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h3><p>定制 nginx 镜像，在空白目录新建Dockerfile文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">mkdir</span> mynginx
+<span class="token function">cd</span> mynginx
+<span class="token function">vi</span> Dockerfile</code></pre>
+<p>Dockerfile文件内容为</p>
+<pre class=" language-bash"><code class="language-bash">FROM nginx
+RUN <span class="token keyword">echo</span> <span class="token string">'&lt;h1>Hello, Docker!&lt;/h1>'</span> <span class="token operator">></span> /usr/share/nginx/html/index.html</code></pre>
+<p>FROM 指定基础镜像为 nginx，RUN 重写了 nginx 的默认页面信息</p>
+<p>在 Dockerfile 文件所在目录执行</p>
+<pre class=" language-bash"><code class="language-bash">docker build -t nginx:v1 <span class="token keyword">.</span> <span class="token comment" spellcheck="true"># 最后的 . 表示当前目录</span></code></pre>
+<p>用 <code>docker run</code> 命令启动容器</p>
+<pre class=" language-bash"><code class="language-bash">docker run --name docker_nginx_v1 -d -p 80:80 nginx:v1</code></pre>
+<p>这条命令会用 nginx 镜像启动一个容器，命名为 <code>docker_nginx_v1</code>，并且映射了 80 端口，这样我们可以用浏览器去访问这个 nginx 服务器：<a href="http://localhost，页面返回：Hello">http://localhost，页面返回：Hello</a>, Docker!</p>
+<h2 id="准备-net-core-web-程序"><a href="#准备-net-core-web-程序" class="headerlink" title="准备 .net core web 程序"></a>准备 .net core web 程序</h2><p>使用上一节的 .net core web 程序，在根目录添加 Dockerfile 文件，内容如下</p>
+<pre class=" language-bash"><code class="language-bash">FROM mcr.microsoft.com/dotnet/core/runtime:3.1-buster-slim
+WORKDIR /app
+COPY <span class="token keyword">.</span> <span class="token keyword">.</span> <span class="token comment" spellcheck="true"># 注意中间有个空格</span>
+ENTRYPOINT <span class="token punctuation">[</span><span class="token string">"dotnet"</span>, <span class="token string">"InternalGateway.dll"</span><span class="token punctuation">]</span></code></pre>
+<p>设置 Dockerfile 文件的属性始终复制到输出目录</p>
+<p>发布上传到 Linux</p>
+<p>构建镜像，Dockerfile所在的文件夹执行</p>
+<pre class=" language-bash"><code class="language-bash">docker build -t uncmd/internalgateway <span class="token keyword">.</span></code></pre>
+<p>长时间的等待，构建成功，使用 <code>docker images</code> 查看</p>
+<p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-images.jpg" alt="" loading="lazy"><em><code>docker images</code></em></p>
+<p>启动刚才构建好的容器</p>
+<pre class=" language-bash"><code class="language-bash">docker run --name internalgateway -p 5000:80 uncmd/internalgateway
+docker <span class="token function">ps</span> <span class="token comment" spellcheck="true"># 查看运行中的容器</span></code></pre>
+<p><strong>容器设置自动启动，启动时加 –restart=always参数</strong></p>
+<pre class=" language-bash"><code class="language-bash">docker run --name internalgateway -p 5000:80 --restart<span class="token operator">=</span>always uncmd/internalgateway</code></pre>
+<ul>
+<li><p>no             不自动重启容器（默认值）</p>
+</li>
+<li><p>on-failure     容器发生错误而退出（容器退出状态不为0）重启容器</p>
+</li>
+<li><p>unless-stopped 在容器已经stop掉或docker stoped/restarted的时候才重启容器</p>
+</li>
+<li><p>always          在容器已经stop掉或Docker stoped/restarted的时候才重启容器</p>
+</li>
+</ul>
+<p>容器运行正常，浏览器访问 http://服务器IP:5000</p>
+<blockquote>
+<p>第一次部署过程踩了较多坑，记录在此</p>
+</blockquote>
+<blockquote>
+<p><code>docker build</code> 构建的镜像名称和标签为 non</p>
+</blockquote>
+<p>原因使镜像构建不成功，仔细查看构建输出日志，在哪一步失败，然后根据提示修改 Dockerfile 文件直至成功</p>
+<blockquote>
+<p><code>docker run</code> 映射的端口为空，<code>docker ps -a</code> 查看端口没有映射，并且 <code>docker start</code> 启动不了容器</p>
+</blockquote>
+<p>原因是容器运行时错误，但是 <code>-d</code> 参数隐藏了具体错误，对于不了解的同学很容易被误导</p>
+<ul>
+<li><p>使用 <code>docker rm</code> 命令删除容器</p>
+</li>
+<li><p><code>docker run</code> 命令去掉 <code>-d</code> 参数，使运行错误在前台展示</p>
+</li>
+<li><p>根据错误修改 Dockerfile 文件，重新生成镜像并运行</p>
+</li>
+</ul>
+<p>页面正常访问，至此，.net core 程序 docker 部署方式完成。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/docker-result.jpg" alt="" loading="lazy"><em>访问5000端口</em></p>
+<h2 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h2><pre class=" language-bash"><code class="language-bash">docker pull image_name <span class="token comment" spellcheck="true"># 拉取docker镜像</span>
+
+docker images <span class="token comment" spellcheck="true"># 查看宿主机上的镜像，Docker镜像保存在/var/lib/docker目录下</span>
+
+docker rmi docker.io/hello-world 或 docker rmi bf756fb1ae65 <span class="token comment" spellcheck="true"># 删除镜像</span>
+
+docker <span class="token function">ps</span> <span class="token comment" spellcheck="true"># 查看当前有哪些容器正在运行</span>
+
+docker <span class="token function">ps</span> -a <span class="token comment" spellcheck="true"># 查看所有容器</span>
+
+docker start container_name/container_id <span class="token comment" spellcheck="true"># 启动容器</span>
+
+docker stop container_name/container_id <span class="token comment" spellcheck="true"># 停止容器</span>
+
+docker restart container_name/container_id <span class="token comment" spellcheck="true"># 重启容器</span>
+
+docker attach container_name/container_id <span class="token comment" spellcheck="true"># 后台启动一个容器后，如果想进入到这个容器，可以使用attach命令</span>
+
+docker <span class="token function">rm</span> container_id <span class="token comment" spellcheck="true"># 删除容器</span>
+
+docker info <span class="token comment" spellcheck="true"># 查看当前系统Docker信息</span>
+
+docker pull centos:latest <span class="token comment" spellcheck="true"># 将Centos这个仓库下面的所有镜像下载到本地repository</span>
+
+docker image prune <span class="token comment" spellcheck="true"># 清理镜像</span></code></pre>
+<blockquote>
+<p><strong>参考</strong></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/ityouknow/p/8520296.html" target="_blank" rel="noopener">https://www.cnblogs.com/ityouknow/p/8520296.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.cnblogs.com/xiaxiaolu/p/9973631.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaxiaolu/p/9973631.html</a></p>
+</blockquote>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/share/linux-netcore-docker/" title="Linux 部署 .NET Core（容器部署）">http://uncmd.github.io/share/linux-netcore-docker/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/share/customize-your-build/" rel="prev" title="MSBuild自定义生成"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">MSBuild自定义生成</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/share/linux-netcore/" rel="next" title="Linux 部署 .NET Core（普通部署）"><span class="post-nav-text">Linux 部署 .NET Core（普通部署）</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+Linux 部署 .NET Core（容器部署）" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

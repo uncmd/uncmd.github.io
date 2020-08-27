@@ -1,0 +1,193 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="使用Kafka协议上传日志到阿里云日志服务"><meta name="keywords" content="日志,kafka,消息队列,阿里云"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>使用Kafka协议上传日志到阿里云日志服务 | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Kafka（Windows）"><span class="toc-number">2.</span> <span class="toc-text">安装Kafka（Windows）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka-Producer-SDK上传日志到Kafka-Cluster"><span class="toc-number">3.</span> <span class="toc-text">Kafka Producer SDK上传日志到Kafka Cluster</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Serilog介绍"><span class="toc-number">3.1.</span> <span class="toc-text">Serilog介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Serilog-Sink-Kafka"><span class="toc-number">3.2.</span> <span class="toc-text">Serilog.Sink.Kafka</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#采集工具上传日志到Kafka-Cluster"><span class="toc-number">4.</span> <span class="toc-text">采集工具上传日志到Kafka Cluster</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka-Cluster日志上传到日志服务"><span class="toc-number">5.</span> <span class="toc-text">Kafka Cluster日志上传到日志服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SDK采集日志上传到日志服务"><span class="toc-number">6.</span> <span class="toc-text">SDK采集日志上传到日志服务</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/share/kafka-aliyun-log-service/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="使用Kafka协议上传日志到阿里云日志服务"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">使用Kafka协议上传日志到阿里云日志服务<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/share/kafka-aliyun-log-service.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-07-24 19:52:30" itemprop="dateCreated datePublished" datetime="2020-07-24T19:52:30+00:00">2020-07-24</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">13k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">24 分钟</span></span></span><span class="leancloud_visitors" id="/share/kafka-aliyun-log-service/" data-flag-title="使用Kafka协议上传日志到阿里云日志服务"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E9%98%BF%E9%87%8C%E4%BA%91/" itemprop="url" rel="index"><span itemprop="text">阿里云</span></a></span> > <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E9%98%BF%E9%87%8C%E4%BA%91/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="text">分享</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E6%97%A5%E5%BF%97/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">日志</span></a><a class="tag" href="/tags/kafka/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">kafka</span></a><a class="tag" href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">消息队列</span></a><a class="tag" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">阿里云</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>最近入职新公司，公司准备接入阿里云的日志服务。公司服务器是自建的，不是云服务器，阿里云日志服务提供的日志采集代理Logtail用于采集阿里云ECS、自建IDC、其他云厂商等服务器上的日志，具有以下优势</p>
+<ul>
+<li><p>基于日志文件，无侵入式采集日志。您无需修改应用程序代码，且采集日志不会影响您的应用程序运行。</p>
+</li>
+<li><p>除采集文本日志外，还支持采集binlog、http数据、容器日志等。</p>
+</li>
+<li><p>对容器支持友好，支持标准容器、swarm集群、Kubernetes集群等容器集群的数据采集。</p>
+</li>
+<li><p>稳定处理日志采集过程中的各种异常。当遇到网络异常、服务端异常等问题时会采用主动重试、本地缓存数据等措施保障数据安全。</p>
+</li>
+<li><p>基于日志服务的集中管理能力。安装Logtail后，只需要在日志服务上配置机器组、Logtail采集配置等信息即可。</p>
+</li>
+<li><p>完善的自我保护机制。为保证运行在服务器上的Logtail，不会明显影响您服务器上其他服务的性能，Logtail在CPU、内存及网络使用方面都做了严格的限制和保护机制。</p>
+</li>
+</ul>
+<p>但是Logtail采集需要服务器连接外网，而且网络要稳定，目前不是所有服务器都连了外网，故需要换一种采集方式。</p>
+<p>阿里云日志服务还支持Web Tracking、Kafka协议上传、Syslog协议上传、Logstash采集、SDK采集等采集方式，因为考虑到旧应用的兼容性，最终主要采用Kafka协议上传日志方式采集日志。</p>
+<p>可以使用各类Kafka Producer SDK或采集工具来采集日志，并通过Kafka协议上传到日志服务。</p>
+<p>总体的日志采集架构如下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/logserver/kafka-logserver.jpg" alt="" loading="lazy"></p>
+<p>如上，旧应用使用采集工具采集文本日志发往Kafka Cluster，不需要改代码。新应用使用Kafka Producer SDK方式，将输出的日志发往Kafka Cluster。日志消费服务将Kafka Cluster中要发往日志服务的日志上传到阿里云日志服务。</p>
+<p>也可以使用Logtail/Logstash/SDK等方式采集日志，然后直接上传到日志服务，缺点是应用所在的服务器必须能连接上阿里云日志服务，也就是需要外网。</p>
+<p>下面将一步一步介绍上述架构的实现</p>
+<h2 id="安装Kafka（Windows）"><a href="#安装Kafka（Windows）" class="headerlink" title="安装Kafka（Windows）"></a>安装Kafka（Windows）</h2><ul>
+<li><p><a href="http://kafka.apache.org/downloads" target="_blank" rel="noopener">下载Kafka</a>，当前最新版本为2.5.0，下载二进制文件并解压缩到一个不含中文的目录</p>
+</li>
+<li><p>启动服务器</p>
+</li>
+</ul>
+<p>Kafka 使用 ZooKeeper 如果你还没有ZooKeeper服务器，你需要先启动一个ZooKeeper服务器。 您可以通过与kafka打包在一起的便捷脚本来快速简单地创建一个单节点ZooKeeper实例。</p>
+<p>在解压缩文件夹打开命令行</p>
+<pre class=" language-bash"><code class="language-bash">bin/windows/zookeeper-server-start.bat config/zookeeper.properties</code></pre>
+<blockquote>
+<p>遇到语法错误的报错，是因为目录层级太深或者是目录名字太长导致的，把Kafka的目录放到D盘根目录下就OK了。</p>
+</blockquote>
+<p>新开一个命令行，启动Kafka服务</p>
+<pre class=" language-bash"><code class="language-bash">bin/windows/kafka-server-start.bat config/server.properties</code></pre>
+<p>Kafka服务的默认端口为9092</p>
+<ul>
+<li>创建一个topic</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic <span class="token function">test</span></code></pre>
+<p>运行list命令查看topic</p>
+<pre class=" language-bash"><code class="language-bash">bin/windows/kafka-topics.bat --list --zookeeper localhost:2181</code></pre>
+<ul>
+<li>发送消息</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">bin/windows/kafka-console-producer.bat --broker-list localhost:9092 --topic <span class="token function">test</span>
+This is a message
+This is another message</code></pre>
+<ul>
+<li>启动一个 consumer</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">bin/windows/kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic <span class="token function">test</span> --from-beginning</code></pre>
+<p>命令执行过程入下图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/logserver/kafka-bash.jpg" alt="" loading="lazy"></p>
+<p>这样一个简单的Kafka就安装好了，后面基于本地Kafka开发</p>
+<h2 id="Kafka-Producer-SDK上传日志到Kafka-Cluster"><a href="#Kafka-Producer-SDK上传日志到Kafka-Cluster" class="headerlink" title="Kafka Producer SDK上传日志到Kafka Cluster"></a>Kafka Producer SDK上传日志到Kafka Cluster</h2><p>本项目是基于.Net开发的，考虑到日志的灵活性以及使用便利性，决定使用Serilog作为日志组件，开发一个Serilog Sink Kafka，在写本地日志的同时把日志发送到Kafka Cluster，应用只需在启动的时候配置Kafka Sink参数，写日志的时候正常写入即可。</p>
+<h3 id="Serilog介绍"><a href="#Serilog介绍" class="headerlink" title="Serilog介绍"></a>Serilog介绍</h3><p>与.NET的许多其他库一样，Serilog也提供对文件，控制台和 其他地方的诊断日志记录 。它易于设置，具有简洁的API，并且可以在最新的.NET平台之间移植。</p>
+<p>与其他日志记录库不同，Serilog在构建时考虑了强大的结构化事件数据。</p>
+<p>Serilog 消息模板是扩展.NET格式字符串的简单DSL。可以命名参数，并将其值序列化为事件的属性，以实现难以置信的搜索和排序灵活性：</p>
+<h3 id="Serilog-Sink-Kafka"><a href="#Serilog-Sink-Kafka" class="headerlink" title="Serilog.Sink.Kafka"></a>Serilog.Sink.Kafka</h3><p>Serilog写日志和接收日志是分离的，有Serilog和Sink两部分，Serilog负责写日志，Sink负责接收日志。同一条日志可以同时被多个接收器消费，社区提供了许多Sink，比如Serilog.Sink.File、Serilog.Sink.Console、Serilog.Sink.Debug等。</p>
+<p>现在我们需要自定义一个Serilog.Sink.Kafka接收器，用于把日志发送到Kafka。</p>
+<p>自定义Sink需要实现 <code>ILogEventSink</code> 接口，这里我使用了 <code>Serilog.Sinks.PeriodicBatching</code> 提供的批量异步功能，代码如下</p>
+<pre class=" language-csharp"><code class="language-csharp">    <span class="token comment" spellcheck="true">/// &lt;summary></span>
+    <span class="token comment" spellcheck="true">/// Serilog Kafka Sink - 允许您使用Serilog将日志发送到Kafka</span>
+    <span class="token comment" spellcheck="true">/// &lt;/summary></span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">KafkaSink</span> <span class="token punctuation">:</span> PeriodicBatchingSink
+    <span class="token punctuation">{</span>
+        <span class="token keyword">private</span> <span class="token keyword">readonly</span> ITextFormatter _formatter<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token keyword">readonly</span> KafkaClient _client<span class="token punctuation">;</span>
+
+        <span class="token keyword">public</span> <span class="token function">KafkaSink</span><span class="token punctuation">(</span>KafkaClientConfiguration configuration<span class="token punctuation">,</span>
+            KafkaSinkConfiguration sinkConfiguration<span class="token punctuation">)</span> 
+            <span class="token punctuation">:</span> <span class="token keyword">base</span><span class="token punctuation">(</span>sinkConfiguration<span class="token punctuation">.</span>BatchPostingLimit<span class="token punctuation">,</span> sinkConfiguration<span class="token punctuation">.</span>Period<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            _formatter <span class="token operator">=</span> sinkConfiguration<span class="token punctuation">.</span>TextFormatter<span class="token punctuation">;</span>
+            _client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">KafkaClient</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token keyword">async</span> Task <span class="token function">EmitBatchAsync</span><span class="token punctuation">(</span>IEnumerable<span class="token operator">&lt;</span>LogEvent<span class="token operator">></span> events<span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token keyword">var</span> logEvent <span class="token keyword">in</span> events<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">var</span> sw <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringWriter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                _formatter<span class="token punctuation">.</span><span class="token function">Format</span><span class="token punctuation">(</span>logEvent<span class="token punctuation">,</span> sw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">await</span> _client<span class="token punctuation">.</span><span class="token function">PublishAsync</span><span class="token punctuation">(</span>sw<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>在重写的 <code>EmitBatchAsync</code> 方法中消费日志事件，其中 <code>ITextFormatter</code> 是应用启动时配置的文本格式化类型，默认为 <code>CompactJsonFormatter</code> 类型，它时紧凑的Json类型，比一般的Json类型体积更小，其中一些具体化的属性如下，<a href="https://github.com/serilog/serilog-formatting-compact" target="_blank" rel="noopener">CompactJsonFormatter仓库地址</a></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@t</code></td>
+<td>Timestamp</td>
+<td>An ISO 8601 timestamp</td>
+</tr>
+<tr>
+<td><code>@m</code></td>
+<td>Message</td>
+<td>A fully-rendered message describing the event</td>
+</tr>
+<tr>
+<td><code>@mt</code></td>
+<td>Message Template</td>
+<td>Alternative to Message; specifies a <a href="http://messagetemplates.org" target="_blank" rel="noopener">message template</a> over the event’s properties that provides for rendering into a textual description of the event</td>
+</tr>
+<tr>
+<td><code>@l</code></td>
+<td>Level</td>
+<td>An implementation-specific level identifier (string or number)</td>
+</tr>
+<tr>
+<td><code>@x</code></td>
+<td>Exception</td>
+<td>A language-dependent error representation potentially including backtrace</td>
+</tr>
+<tr>
+<td><code>@i</code></td>
+<td>Event id</td>
+<td>An implementation specific event id (string or number)</td>
+</tr>
+<tr>
+<td><code>@r</code></td>
+<td>Renderings</td>
+<td>If <code>@mt</code> includes tokens with programming-language-specific formatting, an array of pre-rendered values for each such token</td>
+</tr>
+</tbody></table>
+<p>核心方法是 <code>_client.PublishAsync</code> 方法，代码如下</p>
+<pre class=" language-csharp"><code class="language-csharp">    <span class="token keyword">public</span> <span class="token keyword">async</span> Task <span class="token function">PublishAsync</span><span class="token punctuation">(</span><span class="token keyword">string</span> message<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">using</span> <span class="token punctuation">(</span><span class="token keyword">var</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProducerBuilder</span><span class="token operator">&lt;</span>Null<span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token operator">></span><span class="token punctuation">(</span>_config<span class="token punctuation">.</span>ProducerConfig<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">{</span>
+            <span class="token keyword">try</span>
+            <span class="token punctuation">{</span>
+                <span class="token keyword">var</span> dr <span class="token operator">=</span> <span class="token keyword">await</span> p<span class="token punctuation">.</span><span class="token function">ProduceAsync</span><span class="token punctuation">(</span>_config<span class="token punctuation">.</span>Topic<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Message</span><span class="token operator">&lt;</span>Null<span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token operator">></span> <span class="token punctuation">{</span> Value <span class="token operator">=</span> message <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ProduceException</span><span class="token operator">&lt;</span>Null<span class="token punctuation">,</span> <span class="token keyword">string</span><span class="token operator">></span> e<span class="token punctuation">)</span>
+            <span class="token punctuation">{</span>
+                Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>$<span class="token string">"发送失败: {e.Error.Reason}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>这个方法很简单，就是构建一个Kafka生产者对象，然后根据配置的主题发送消息到Kafka，如此一个Serilog.Sink.Kafka就开发完成了。</p>
+<p>完整代码将发布到GitHub</p>
+<h2 id="采集工具上传日志到Kafka-Cluster"><a href="#采集工具上传日志到Kafka-Cluster" class="headerlink" title="采集工具上传日志到Kafka Cluster"></a>采集工具上传日志到Kafka Cluster</h2><h2 id="Kafka-Cluster日志上传到日志服务"><a href="#Kafka-Cluster日志上传到日志服务" class="headerlink" title="Kafka Cluster日志上传到日志服务"></a>Kafka Cluster日志上传到日志服务</h2><h2 id="SDK采集日志上传到日志服务"><a href="#SDK采集日志上传到日志服务" class="headerlink" title="SDK采集日志上传到日志服务"></a>SDK采集日志上传到日志服务</h2></div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/share/kafka-aliyun-log-service/" title="使用Kafka协议上传日志到阿里云日志服务">http://uncmd.github.io/share/kafka-aliyun-log-service/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/share/easy-use/" rel="prev" title="提升体验"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">提升体验</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/books/fsq-share/" rel="next" title="房思琪的初恋乐园"><span class="post-nav-text">房思琪的初恋乐园</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+使用Kafka协议上传日志到阿里云日志服务" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

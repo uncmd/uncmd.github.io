@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Oracle数据库"><meta name="keywords" content="数据库,随笔"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>Oracle数据库 | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle介绍"><span class="toc-number">1.</span> <span class="toc-text">Oracle介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Oracle使用"><span class="toc-number">2.</span> <span class="toc-text">Oracle使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#锁表锁包查询"><span class="toc-number">2.1.</span> <span class="toc-text">锁表锁包查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列"><span class="toc-number">2.2.</span> <span class="toc-text">Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Oracle杀掉进程的三种方式"><span class="toc-number">2.3.</span> <span class="toc-text">Oracle杀掉进程的三种方式</span></a></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/microservice/oracle/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="Oracle数据库"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">Oracle数据库<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/microservice/oracle.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-05-11 20:41:40" itemprop="dateCreated datePublished" datetime="2020-05-11T20:41:40+00:00">2020-05-11</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">17k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">31 分钟</span></span></span><span class="leancloud_visitors" id="/microservice/oracle/" data-flag-title="Oracle数据库"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="text">微服务</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">数据库</span></a><a class="tag" href="/tags/%E9%9A%8F%E7%AC%94/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">随笔</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><p><a href="https://uncmd.github.io/microservice/oracle/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/oracle.jpg" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="Oracle介绍"><a href="#Oracle介绍" class="headerlink" title="Oracle介绍"></a>Oracle介绍</h2><p>Oracle Database，又名Oracle RDBMS，或简称Oracle。是甲骨文公司的一款关系数据库管理系统。它是在数据库领域一直处于领先地位的产品。可以说Oracle数据库系统是目前世界上流行的关系数据库管理系统，系统可移植性好、使用方便、功能强，适用于各类大、中、小、微机环境。它是一种高效率、可靠性好的、适应高吞吐量的数据库方案。</p>
+<h2 id="Oracle使用"><a href="#Oracle使用" class="headerlink" title="Oracle使用"></a>Oracle使用</h2><h3 id="锁表锁包查询"><a href="#锁表锁包查询" class="headerlink" title="锁表锁包查询"></a>锁表锁包查询</h3><pre class=" language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 查询锁包</span>
+<span class="token keyword">SELECT</span> <span class="token string">'alter system kill session '</span> <span class="token operator">||</span> <span class="token string">''</span><span class="token string">''</span> <span class="token operator">||</span> sid <span class="token operator">||</span> <span class="token string">','</span> <span class="token operator">||</span> <span class="token keyword">serial</span><span class="token comment" spellcheck="true"># || '''immediate;', a.*</span>
+  <span class="token keyword">FROM</span> dba_ddl_locks <span class="token number">a</span><span class="token punctuation">,</span> v$<span class="token keyword">session</span> ss
+ <span class="token keyword">WHERE</span> <span class="token number">a</span><span class="token punctuation">.</span>name <span class="token operator">LIKE</span> <span class="token string">'%包名%'</span>
+   <span class="token operator">AND</span> <span class="token number">a</span><span class="token punctuation">.</span>session_id <span class="token operator">=</span> ss<span class="token punctuation">.</span>sid<span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">--查看被锁的表</span>
+<span class="token keyword">select</span> p<span class="token punctuation">.</span>spid<span class="token punctuation">,</span>
+       <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">SERIAL</span><span class="token comment" spellcheck="true">#,</span>
+       <span class="token number">c</span><span class="token punctuation">.</span>object_name<span class="token punctuation">,</span>
+       <span class="token number">b</span><span class="token punctuation">.</span>session_id<span class="token punctuation">,</span>
+       <span class="token number">b</span><span class="token punctuation">.</span>oracle_username<span class="token punctuation">,</span>
+       <span class="token number">b</span><span class="token punctuation">.</span>os_user_name<span class="token punctuation">,</span>
+       <span class="token string">'alter system kill session '</span> <span class="token operator">||</span> <span class="token string">''</span><span class="token string">''</span> <span class="token operator">||</span> p<span class="token punctuation">.</span>SPID <span class="token operator">||</span> <span class="token string">','</span> <span class="token operator">||</span> <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">SERIAL</span><span class="token comment" spellcheck="true"># || '''' || ';' strsql</span>
+  <span class="token keyword">from</span> v$process p<span class="token punctuation">,</span> v$<span class="token keyword">session</span> <span class="token number">a</span><span class="token punctuation">,</span> v$locked_object <span class="token number">b</span><span class="token punctuation">,</span> all_objects <span class="token number">c</span>
+ <span class="token keyword">where</span> p<span class="token punctuation">.</span>addr <span class="token operator">=</span> <span class="token number">a</span><span class="token punctuation">.</span>paddr
+   <span class="token operator">and</span> <span class="token number">a</span><span class="token punctuation">.</span>process <span class="token operator">=</span> <span class="token number">b</span><span class="token punctuation">.</span>process
+   <span class="token operator">and</span> <span class="token number">c</span><span class="token punctuation">.</span>object_id <span class="token operator">=</span> <span class="token number">b</span><span class="token punctuation">.</span>object_id<span class="token punctuation">;</span>
+
+   <span class="token comment" spellcheck="true">--查询锁表原因</span>
+<span class="token keyword">select</span> l<span class="token punctuation">.</span>session_id sid<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#, </span>
+       l<span class="token punctuation">.</span>locked_mode<span class="token punctuation">,</span> 
+       l<span class="token punctuation">.</span>oracle_username<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span><span class="token keyword">user</span><span class="token comment" spellcheck="true">#, </span>
+       l<span class="token punctuation">.</span>os_user_name<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span>machine<span class="token punctuation">,</span> 
+       s<span class="token punctuation">.</span>terminal<span class="token punctuation">,</span> 
+       <span class="token number">a</span><span class="token punctuation">.</span>sql_text<span class="token punctuation">,</span> 
+       <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">action</span>
+<span class="token keyword">from</span> v$sqlarea <span class="token number">a</span><span class="token punctuation">,</span> v$<span class="token keyword">session</span> s<span class="token punctuation">,</span> v$locked_object l 
+<span class="token keyword">where</span> l<span class="token punctuation">.</span>session_id <span class="token operator">=</span> s<span class="token punctuation">.</span>sid 
+   <span class="token operator">and</span> s<span class="token punctuation">.</span>prev_sql_addr <span class="token operator">=</span> <span class="token number">a</span><span class="token punctuation">.</span>address 
+<span class="token keyword">order</span> <span class="token keyword">by</span> sid<span class="token punctuation">,</span> s<span class="token punctuation">.</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#;</span>
+
+<span class="token comment" spellcheck="true">-- --批量解锁语句生成</span>
+<span class="token keyword">SELECT</span> A<span class="token punctuation">.</span>OBJECT_NAME<span class="token punctuation">,</span>
+       B<span class="token punctuation">.</span>SESSION_ID<span class="token punctuation">,</span>
+       C<span class="token punctuation">.</span><span class="token keyword">SERIAL</span><span class="token comment" spellcheck="true">#,</span>
+       <span class="token string">'alter system kill session '</span><span class="token string">''</span> <span class="token operator">||</span> B<span class="token punctuation">.</span>SESSION_ID <span class="token operator">||</span> <span class="token string">','</span> <span class="token operator">||</span> C<span class="token punctuation">.</span><span class="token keyword">SERIAL</span><span class="token comment" spellcheck="true"># ||</span>
+       <span class="token string">''</span><span class="token string">'; '</span> <span class="token keyword">AS</span> A<span class="token punctuation">,</span>
+       C<span class="token punctuation">.</span>PROGRAM<span class="token punctuation">,</span>
+       C<span class="token punctuation">.</span>USERNAME<span class="token punctuation">,</span>
+       C<span class="token punctuation">.</span>COMMAND<span class="token punctuation">,</span>
+       C<span class="token punctuation">.</span>MACHINE<span class="token punctuation">,</span>
+       C<span class="token punctuation">.</span>LOCKWAIT
+  <span class="token keyword">FROM</span> ALL_OBJECTS A<span class="token punctuation">,</span> V$LOCKED_OBJECT B<span class="token punctuation">,</span> V$<span class="token keyword">SESSION</span> C
+ <span class="token keyword">WHERE</span> A<span class="token punctuation">.</span>OBJECT_ID <span class="token operator">=</span> B<span class="token punctuation">.</span>OBJECT_ID
+   <span class="token operator">AND</span> C<span class="token punctuation">.</span>SID <span class="token operator">=</span> B<span class="token punctuation">.</span>SESSION_ID<span class="token punctuation">;</span></code></pre>
+<h3 id="Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列"><a href="#Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列" class="headerlink" title="Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列"></a>Oracle把逗号分割的字符串转换为可放入in的条件语句的字符数列</h3><pre class=" language-sql"><code class="language-sql">使用例子：
+<span class="token keyword">SELECT</span> rownum sn<span class="token punctuation">,</span> column_value <span class="token keyword">FROM</span> <span class="token keyword">TABLE</span><span class="token punctuation">(</span>split<span class="token punctuation">(</span>p_pmb<span class="token punctuation">,</span> <span class="token string">'|'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+split方法：
+
+<span class="token keyword">CREATE</span> <span class="token operator">OR</span> REPLACE <span class="token keyword">FUNCTION</span> <span class="token string">"SPLIT"</span> <span class="token punctuation">(</span>p_list varchar2<span class="token punctuation">,</span>p_sep varchar2 :<span class="token operator">=</span> <span class="token string">','</span><span class="token punctuation">)</span> <span class="token keyword">return</span> type_split pipelined
+<span class="token operator">IS</span>
+l_idx pls_integer<span class="token punctuation">;</span>
+v_list varchar2<span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span> :<span class="token operator">=</span> p_list<span class="token punctuation">;</span>
+
+<span class="token keyword">begin</span>
+      loop
+           l_idx :<span class="token operator">=</span> instr<span class="token punctuation">(</span>v_list<span class="token punctuation">,</span>p_sep<span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">if</span> l_idx <span class="token operator">></span> <span class="token number">0</span> <span class="token keyword">then</span>
+               pipe <span class="token keyword">row</span><span class="token punctuation">(</span>substr<span class="token punctuation">(</span>v_list<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>l_idx<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               v_list :<span class="token operator">=</span> substr<span class="token punctuation">(</span>v_list<span class="token punctuation">,</span>l_idx<span class="token operator">+</span>length<span class="token punctuation">(</span>p_sep<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token keyword">else</span>
+                pipe <span class="token keyword">row</span><span class="token punctuation">(</span>v_list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">exit</span><span class="token punctuation">;</span>
+           <span class="token keyword">end</span> <span class="token keyword">if</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">end</span> loop<span class="token punctuation">;</span>
+
+
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span> split<span class="token punctuation">;</span>
+
+
+<span class="token keyword">SELECT</span> <span class="token operator">*</span>
+<span class="token keyword">FROM</span> TAB_A T1 
+<span class="token keyword">WHERE</span>  T1<span class="token punctuation">.</span>CODE  <span class="token operator">IN</span> <span class="token punctuation">(</span>
+<span class="token keyword">SELECT</span> REGEXP_SUBSTR<span class="token punctuation">(</span><span class="token string">'589,321'</span><span class="token punctuation">,</span><span class="token string">'[^,]+'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> LEVEL<span class="token punctuation">)</span> <span class="token keyword">FROM</span> DUAL
+<span class="token keyword">CONNECT</span> <span class="token keyword">BY</span> REGEXP_SUBSTR<span class="token punctuation">(</span><span class="token string">'SMITH,ALLEN,WARD,JONES'</span><span class="token punctuation">,</span> <span class="token string">'[^,]+'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> LEVEL<span class="token punctuation">)</span> <span class="token operator">IS</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span>
+</code></pre>
+<h3 id="Oracle杀掉进程的三种方式"><a href="#Oracle杀掉进程的三种方式" class="headerlink" title="Oracle杀掉进程的三种方式"></a>Oracle杀掉进程的三种方式</h3><p>1、ALTER SYSTEM KILL SESSION</p>
+<p>关于KILL SESSION Clause ，如下官方文档描述所示，alter system kill session实际上不是真正的杀死会话，它只是将会话标记为终止。等待PMON进程来清除会话。</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">ALTER</span> SYSTEM <span class="token keyword">KILL</span> <span class="token keyword">SESSION</span> 'sid<span class="token punctuation">,</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#'; --终止会话，不释放资源</span>
+
+<span class="token keyword">alter</span> system <span class="token keyword">kill</span> <span class="token keyword">session</span> 'sid <span class="token keyword">serial</span><span class="token comment" spellcheck="true">#' immediate --终止会话，释放资源</span></code></pre>
+<p>2、ALTER SYSTEM DISCONNECT SESSION</p>
+<p>ALTER SYSTEM DISCONNECT SESSION 杀掉专用服务器(DEDICATED SERVER)或共享服务器的连接会话，它等价于从操作系统杀掉进程。它有两个选项POST_TRANSACTION和IMMEDIATE， 其中POST_TRANSACTION表示等待事务完成后断开会话，IMMEDIATE表示中断会话，立即回滚事务。</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">ALTER</span> SYSTEM DISCONNECT <span class="token keyword">SESSION</span> 'sid<span class="token punctuation">,</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#' POST_TRANSACTION;</span>
+
+<span class="token keyword">ALTER</span> SYSTEM DISCONNECT <span class="token keyword">SESSION</span> 'sid<span class="token punctuation">,</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#' IMMEDIATE;</span></code></pre>
+<p>3、KILL -9 SPID （Linux） 或 orakill ORACLE_SID spid　（Windows）</p>
+<p>可以使用下面SQL语句找到对应的操作系统进程SPID，然后杀掉。</p>
+<pre class=" language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> s<span class="token punctuation">.</span>inst_id<span class="token punctuation">,</span>
+       s<span class="token punctuation">.</span>sid<span class="token punctuation">,</span>
+       s<span class="token punctuation">.</span><span class="token keyword">serial</span><span class="token comment" spellcheck="true">#,</span>
+       p<span class="token punctuation">.</span>spid<span class="token punctuation">,</span>
+       s<span class="token punctuation">.</span>username<span class="token punctuation">,</span>
+       s<span class="token punctuation">.</span>program
+<span class="token keyword">FROM</span>   gv$<span class="token keyword">session</span> s
+       <span class="token keyword">JOIN</span> gv$process p <span class="token keyword">ON</span> p<span class="token punctuation">.</span>addr <span class="token operator">=</span> s<span class="token punctuation">.</span>paddr <span class="token operator">AND</span> p<span class="token punctuation">.</span>inst_id <span class="token operator">=</span> s<span class="token punctuation">.</span>inst_id
+<span class="token keyword">WHERE</span>  s<span class="token punctuation">.</span><span class="token keyword">type</span> <span class="token operator">!=</span> <span class="token string">'BACKGROUND'</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>杀掉操作系统进程是一件危险的事情，尤其不要误杀。所以在执行前，一定要谨慎确认。</p>
+</blockquote>
+<p>在数据库如果要彻底杀掉一个会话，尤其是大事务会话，最好是使用ALTER SYSTEM DISCONNECT SESSION IMMEDIATE或使用下面步骤：</p>
+<p>1、首先在操作系统级别Kill掉进程。</p>
+<p>2、在数据库内部KILL SESSION</p>
+<p>或者反过来亦可。这样可以快速终止进程，释放资源。</p>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/microservice/oracle/" title="Oracle数据库">http://uncmd.github.io/microservice/oracle/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/microservice/ocelot/" rel="prev" title=".NET Core开源API网关 – Ocelot"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">.NET Core开源API网关 – Ocelot</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/microservice/overview/" rel="next" title="微服务概览"><span class="post-nav-text">微服务概览</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+Oracle数据库" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="MSBuild自定义生成"><meta name="keywords" content="MSBuild,VisualStudio"><meta name="author" content="睡五百年可好"><meta name="copyright" content="睡五百年可好"><meta name="theme-color" content="#0078E7"><title>MSBuild自定义生成 | 睡五百年可好</title><link rel="shortcut icon" href="/favicon.png"><link rel="mask-icon" href="/favicon.png" color="#0078E7"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script id="yun-config">
+    window.CONFIG = {"root":"/","title":"睡五百年可好","version":"0.7.1","anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","say":{"api":"https://v1.hitokoto.cn","hitokoto":true}};
+  </script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;family=Source+Code+Pro&amp;display=swap" media="none" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_rtqh36oinzl.js" async></script><div class="js-Pjax"></div><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="/css/prism.css" type="text/css"></head><body><div class="container"><a class="sidebar-toggle sidebar-toggle-fixed hty-icon-button"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><aside class="sidebar"><script defer src="/js/sidebar.js"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about" title="睡五百年可好"><img width="96" loading="lazy" src="/images/logo.jpg" alt="睡五百年可好"></a><div class="site-author-name"><a href="/about/">睡五百年可好</a></div><a class="site-name" href="/about/site.html">睡五百年可好</a><sub class="site-subtitle"></sub><div class="site-desciption">睡五百年可好</div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="首页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item site-state-posts"><a href="/archives" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">30</span></a></div><div class="site-state-item site-state-categories"><a href="/categories" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item site-state-tags"><a href="/tags" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">32</span></a></div><a class="site-state-item hty-icon-button" href="https://uncmd.github.io/doc-st/#!index.md" title="文档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-settings-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://wpa.qq.com/msgrd?v=3&amp;uin=1951765200&amp;site=qq&amp;menu=yes" title="QQ" target="_blank" style="color:#12B7F5"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://github.com/uncmd" title="GitHub" target="_blank" style="color:#181717"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-github-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="mailto:wenjunpeng@chinasie.com" title="E-Mail" target="_blank" style="color:#8E71C1"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-mail-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://weibo.com/3007178515" title="微博" target="_blank" style="color:#E6162D"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weibo-line"></use></svg></a></div><hr style="margin:0.5rem 1rem"><div class="links"><a class="links-item hty-icon-button" href="/albums/" title="我的相册" style="color:dodgerblue"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gallery-line"></use></svg></a></div></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Directory-Build-props-和-Directory-Build-targets"><span class="toc-number">1.</span> <span class="toc-text">Directory.Build.props 和 Directory.Build.targets</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Directory-Build-props-示例"><span class="toc-number">1.1.</span> <span class="toc-text">Directory.Build.props 示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索范围"><span class="toc-number">1.2.</span> <span class="toc-text">搜索范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入顺序"><span class="toc-number">1.3.</span> <span class="toc-text">导入顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用例：多级别合并"><span class="toc-number">1.4.</span> <span class="toc-text">用例：多级别合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择将属性添加到-props-文件或-targets-文件"><span class="toc-number">1.5.</span> <span class="toc-text">选择将属性添加到 .props 文件或 .targets 文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MSBuildProjectExtensionsPath"><span class="toc-number">2.</span> <span class="toc-text">MSBuildProjectExtensionsPath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#user-文件"><span class="toc-number">3.</span> <span class="toc-text">.user 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MSBuildExtensionsPath-和-MSBuildUserExtensionsPath"><span class="toc-number">4.</span> <span class="toc-text">MSBuildExtensionsPath 和 MSBuildUserExtensionsPath</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义解决方案生成"><span class="toc-number">5.</span> <span class="toc-text">自定义解决方案生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义所有-NET-生成"><span class="toc-number">6.</span> <span class="toc-text">自定义所有 .NET 生成</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="post-block" itemscope itemtype="https://schema.org/Article"><link itemprop="mainEntityOfPage" href="http://uncmd.github.io/share/customize-your-build/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="睡五百年可好"><meta itemprop="description" content="MSBuild自定义生成"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="睡五百年可好"></span><header class="post-header"><h1 class="post-title" itemprop="name headline" style="color: undefined">MSBuild自定义生成<a class="post-edit-link" href="https://github.com/uncmd/uncmd.github.io/tree/hexo/source/_posts/share/customize-your-build.md" target="_blank" title="编辑" rel="noopener"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-edit-line"></use></svg></a></h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-06-02 22:55:40" itemprop="dateCreated datePublished" datetime="2020-06-02T22:55:40+00:00">2020-06-02</time><span class="post-meta-divider">-</span><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-2-line"></use></svg></span> <time title="修改时间：2020-08-27 15:12:48" itemprop="dateModified" datetime="2020-08-27T15:12:48+00:00">2020-08-27</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="本文字数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-file-word-line"></use></svg></span> <span title="本文字数">17k</span><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">31 分钟</span></span></span><span class="leancloud_visitors" id="/share/customize-your-build/" data-flag-title="MSBuild自定义生成"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><div class="post-classify"><span class="post-category"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span> <span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category" href="/categories/%E5%88%86%E4%BA%AB/" itemprop="url" rel="index"><span itemprop="text">分享</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag" href="/tags/MSBuild/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">MSBuild</span></a><a class="tag" href="/tags/VisualStudio/"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">VisualStudio</span></a></span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content post-markdown"><blockquote>
+<p>使用标准生成进程（导入 Microsoft.Common.props 和 Microsoft.Common.targets）的 MSBuild 项目有多个可用于自定义生成过程的扩展性挂钩。</p>
+</blockquote>
+<blockquote>
+<p><a href="https://docs.microsoft.com/zh-cn/visualstudio/msbuild/customize-your-build?view=vs-2019" target="_blank" rel="noopener">Microsoft Doc 自定义生成</a></p>
+</blockquote>
+<p><a href="https://uncmd.github.io/share/customize-your-build/"><img src="https://cdn.jsdelivr.net/gh/uncmd/MyResource/Hexo/images/share/customize-your-build.jpg" alt="" loading="lazy"></a></p>
+<a id="more"></a>
+
+<h2 id="Directory-Build-props-和-Directory-Build-targets"><a href="#Directory-Build-props-和-Directory-Build-targets" class="headerlink" title="Directory.Build.props 和 Directory.Build.targets"></a>Directory.Build.props 和 Directory.Build.targets</h2><p>在 MSBuild 15 版之前，如果要向解决方案中的项目提供新的自定义属性，必须手动向解决方案中的每个项目文件添加一个针对该属性的引用。 另外，还必须在 <code>.props</code> 文件中定义属性，然后在解决方案的每个项目中显式导入该 <code>.props</code> 文件。</p>
+<p>但现在，通过在包含源的根文件夹的名为 <code>Directory.Build.props</code>  的单个文件中定义一个新属性，只需一步即可向每个项目添加该属性。 在 MSBuild 运行时，<code>Microsoft.Common.props</code>  会搜索 <code>Directory.Build.props</code>  文件的目录结构（<code>Microsoft.Common.targets</code>  将查找 <code>Directory.Build.targets</code>  ）。 如果找到，就会导入该属性。 <code>Directory.Build.props</code>  是用户定义文件，对目录下的项目提供自定义选项。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+</blockquote>
+<blockquote>
+<p>基于 Linux 的文件系统区分大小写。 请确保 Directory.Build.props 文件名的大小写完全匹配，否则将不会在生成流程中检测到它。</p>
+</blockquote>
+<h3 id="Directory-Build-props-示例"><a href="#Directory-Build-props-示例" class="headerlink" title="Directory.Build.props 示例"></a>Directory.Build.props 示例</h3><p>例如，如果想要使所有项目都可以访问新的 Roslyn /deterministic  功能（属性 <code>$(Deterministic)</code> 在 Roslyn <code>CoreCompile</code> 目标中公开了此功能），可以执行以下操作。</p>
+<ol>
+<li><p>在存储库根目录中创建一个名为 Directory.Build.props  的新文件。</p>
+</li>
+<li><p>将以下 XML 添加到此文件。</p>
+</li>
+</ol>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PropertyGroup</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>LangVersion</span><span class="token punctuation">></span></span>latest<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>LangVersion</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Version</span><span class="token punctuation">></span></span>1.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Authors</span><span class="token punctuation">></span></span>uncmd<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Authors</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Description</span><span class="token punctuation">></span></span>An abp microservice demo.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Description</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>NoWarn</span><span class="token punctuation">></span></span>$(NoWarn);CS1591<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>NoWarn</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PackageProjectUrl</span><span class="token punctuation">></span></span>https://uncmd.github.io/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PackageProjectUrl</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RepositoryType</span><span class="token punctuation">></span></span>git<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>RepositoryType</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>RepositoryUrl</span><span class="token punctuation">></span></span>https://github.com/uncmd/uncmd<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>RepositoryUrl</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PackageLicenseExpression</span><span class="token punctuation">></span></span>MIT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PackageLicenseExpression</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PropertyGroup</span><span class="token punctuation">></span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ItemGroup</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PackageReference</span> <span class="token attr-name">Include</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>SourceLink.Create.CommandLine<span class="token punctuation">"</span></span> <span class="token attr-name">Version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2.8.3<span class="token punctuation">"</span></span> <span class="token attr-name">PrivateAssets</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>All<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ItemGroup</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">></span></span></code></pre>
+<ol start="3">
+<li>运行 MSBuild。 项目现有的 Microsoft.Common.props  和 Microsoft.Common.targets  导入会找到该文件并将其导入。</li>
+</ol>
+<h3 id="搜索范围"><a href="#搜索范围" class="headerlink" title="搜索范围"></a>搜索范围</h3><p>搜索 Directory.Build.props  文件时，MSBuild 将从项目位置 (<code>$(MSBuildProjectFullPath)</code>) 向上搜索目录结构，找到 Directory.Build.props  文件后停止。 例如，如果 <code>$(MSBuildProjectFullPath)</code> 为 c:\users\username\code\test\case1  ，MSBuild 将从该位置开始搜索，然后向上搜索目录结构，直到找到 Directory.Build.props  文件，如以下目录结构中所示。</p>
+<pre><code>c:\users\username\code\test\case1
+c:\users\username\code\test
+c:\users\username\code
+c:\users\username
+c:\users
+c:\</code></pre><p>解决方案文件的位置与 Directory.Build.props  无关。</p>
+<h3 id="导入顺序"><a href="#导入顺序" class="headerlink" title="导入顺序"></a>导入顺序</h3><p>Directory.Build.props 很早便已导入 Microsoft.Common.props，因此它无法使用后来定义的属性。 因此，请避免引用尚未定义的属性（否则计算结果将为空）。</p>
+<p>从 NuGet 包导入 .targets  文件后，会从 Microsoft.Common.targets  导入 Directory.Build.targets  。 因此，它会重写大部分生成逻辑中定义的属性和目标，但有时候，可能需要在最终导入后自定义项目文件。</p>
+<h3 id="用例：多级别合并"><a href="#用例：多级别合并" class="headerlink" title="用例：多级别合并"></a>用例：多级别合并</h3><p>假设你具有此标准解决方案结构：</p>
+<pre><code>\
+  MySolution.sln
+  Directory.Build.props     (1)
+  \src
+    Directory.Build.props   (2-src)
+    \Project1
+    \Project2
+  \test
+    Directory.Build.props   (2-test)
+    \Project1Tests
+    \Project2Tests</code></pre><p>则可能需要具有所有项目 (1)  的通用属性、src  项目 (2-src)  的通用属性，以及 test  项目 (2-test)  的通用属性。</p>
+<p>若要 MSBuild 正确地合并“内部”文件（2-src 和 2-test）和“外部”文件 (1)，必须考虑到 MSBuild 找到 Directory.Build.props 文件后会立即停止进一步的扫描     。 要继续扫描并合并到外部文件，请将此代码置于这两个内部文件中：</p>
+<p><code>&lt;Import Project=&quot;$([MSBuild]::GetPathOfFileAbove(&#39;Directory.Build.props&#39;, &#39;$(MSBuildThisFileDirectory)../&#39;))&quot; /&gt;</code></p>
+<p>MSBuild 的常规方法汇总如下：</p>
+<ul>
+<li>对于任何给定的项目，MSBuild 在解决方案结构中向上查找第一个 Directory.Build.props  ，将其与默认项合并，然后停止扫描</li>
+<li>如果要找到并合并多个级别，则从“内部”文件 <a href="../msbuild/property-functions.md#msbuild-getpathoffileabove"><code>&lt;Import...&gt;</code></a>（如上所示）“外部”文件</li>
+<li>如果“外部”文件本身不会再导入其上的内容，则扫描在此处停止</li>
+<li>要控制扫描/合并过程，请使用 <code>$(DirectoryBuildPropsPath)</code> 和 <code>$(ImportDirectoryBuildProps)</code></li>
+</ul>
+<p>或再简单点：不能导入任何内容的第一个 Directory.Build.props 即为 MSBuild 停止的位置  。</p>
+<h3 id="选择将属性添加到-props-文件或-targets-文件"><a href="#选择将属性添加到-props-文件或-targets-文件" class="headerlink" title="选择将属性添加到 .props 文件或 .targets 文件"></a>选择将属性添加到 .props 文件或 .targets 文件</h3><p>MSBuild 依赖于导入顺序，属性（或 <code>UsingTask</code> 或目标）的最后一个定义是使用的定义。</p>
+<p>使用显式导入时，可以随时从 .props  或 .targets  文件导入。 下面介绍广泛使用的约定：</p>
+<ul>
+<li><p>.props  文件在导入顺序的早期导入。</p>
+</li>
+<li><p>.targets  文件在生成顺序的后期导入。</p>
+</li>
+</ul>
+<p>此约定由 <code>&lt;Project Sdk=&quot;SdkName&quot;&gt;</code> 导入强制执行（即，在文件的所有内容之前首先导入 Sdk.props  ，然后在文件的所有内容之后最后导入 Sdk.targets  ）。</p>
+<p>在决定在何处放置属性后，使用以下通用原则：</p>
+<ul>
+<li><p>对于许多属性，在何处定义它们并不重要，因为它们不会被覆盖，只能在执行时读取。</p>
+</li>
+<li><p>对于可能在单个项目中自定义的行为，请在 .props  文件中设置默认值。</p>
+</li>
+<li><p>通过读取可能自定义属性的值，避免在 .props  文件中设置依赖属性，因为在 MSBuild 读取用户项目之前不会进行自定义。</p>
+</li>
+<li><p>在 .targets  文件中设置依赖属性，因为它们将从单个项目中提取自定义项。</p>
+</li>
+<li><p>如果需要覆盖属性，请在所有用户项目自定义项生效后，在 .targets  文件中执行此操作。 使用派生属性时务必小心；还可能需要覆盖派生属性。</p>
+</li>
+<li><p>包括 .props  文件中的项目（以属性为条件）。 在任何项目之前都要考虑所有属性，因此可以提取用户项目属性自定义项，这使用户的项目有机会 <code>Remove</code> 或 <code>Update</code> 导入所引入的任何项目。</p>
+</li>
+<li><p>定义 .targets  文件中的目标。 但是，如果 SDK 导入了 .targets  文件，请记住此方案使得覆盖目标更加困难，因为默认情况下用户的项目没有可以覆盖它的地方。</p>
+</li>
+<li><p>如果可能，宁可在评估时自定义属性，也不更改目标内的属性。 此原则可以更轻松地加载项目并了解正在执行的操作。</p>
+</li>
+</ul>
+<h2 id="MSBuildProjectExtensionsPath"><a href="#MSBuildProjectExtensionsPath" class="headerlink" title="MSBuildProjectExtensionsPath"></a>MSBuildProjectExtensionsPath</h2><p>默认情况下，Microsoft.Common.props 导入 <code>$(MSBuildProjectExtensionsPath)$(MSBuildProjectFile).*.props</code>，Microsoft.Common.targets 导入 <code>$(MSBuildProjectExtensionsPath)$(MSBuildProjectFile).*.targets</code>   。 <code>MSBuildProjectExtensionsPath</code> 的默认值是 <code>$(BaseIntermediateOutputPath)</code>、<code>obj/</code>。 NuGet 用此机制来引用随包提供的生成逻辑，也就是说，在还原时，它会创建引用包内容的 <code>{project}.nuget.g.props</code> 文件。</p>
+<p>可以通过在 Directory.Build.props 中或者在导入 Microsoft.Common.props 前将属性 <code>ImportProjectExtensionProps</code> 设为 <code>false</code> 来禁用此扩展性机制   。</p>
+<blockquote>
+<p><strong>注意</strong></p>
+</blockquote>
+<blockquote>
+<p>禁用 MSBuildProjectExtensionsPath 导入将阻止在 NuGet 包中提供的生成逻辑应用到你的项目。 一些 NuGet 包需要生成逻辑来执行其功能，并且在禁用该功能时会呈现不可用。</p>
+</blockquote>
+<h2 id="user-文件"><a href="#user-文件" class="headerlink" title=".user 文件"></a>.user 文件</h2><p>Microsoft.Common.CurrentVersion.targets 会导入 <code>$(MSBuildProjectFullPath).user</code>（如果存在），因此可以使用其他文件扩展名在你的项目旁创建一个文件  。 对于计划签入源代码管理的长期更改，最好更改项目本身，以便将来的维护人员不必了解此扩展机制。</p>
+<h2 id="MSBuildExtensionsPath-和-MSBuildUserExtensionsPath"><a href="#MSBuildExtensionsPath-和-MSBuildUserExtensionsPath" class="headerlink" title="MSBuildExtensionsPath 和 MSBuildUserExtensionsPath"></a>MSBuildExtensionsPath 和 MSBuildUserExtensionsPath</h2><blockquote>
+<p><strong>警告⚠</strong></p>
+</blockquote>
+<blockquote>
+<p>如果使用这些扩展机制，则较难获取计算机上的可重复生成。 尝试使用可以签入源代码管理系统并在基本代码的所有开发人员之间共享的配置。</p>
+</blockquote>
+<p>按照惯例，许多核心生成逻辑文件</p>
+<pre class=" language-xml"><code class="language-xml">$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\{TargetFileName}\ImportBefore\*.targets</code></pre>
+<p>会在其内容前后各导入一次</p>
+<pre class=" language-xml"><code class="language-xml">$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\{TargetFileName}\ImportAfter\*.targets</code></pre>
+<p>这一约定使已安装的 SDK 可以增强常见项目类型的生成逻辑。</p>
+<p>在 <code>$(MSBuildUserExtensionsPath)</code> 中搜索相同的目录结构，即按用户文件夹 %LOCALAPPDATA%\Microsoft\MSBuild  。 放置在该文件夹中的文件将被导入该用户凭据下运行的相应项目类型的所有生成。 通过在模式 <code>ImportUserLocationsByWildcardBefore{ImportingFileNameWithNoDots}</code> 中设置以导入文件命名的属性，可以禁用用户扩展。 例如，将 <code>ImportUserLocationsByWildcardBeforeMicrosoftCommonProps</code> 设置为 <code>false</code> 会阻止导入 <code>$(MSBuildUserExtensionsPath)\$(MSBuildToolsVersion)\Imports\Microsoft.Common.props\ImportBefore\*</code>。</p>
+<h2 id="自定义解决方案生成"><a href="#自定义解决方案生成" class="headerlink" title="自定义解决方案生成"></a>自定义解决方案生成</h2><blockquote>
+<p><strong>重要</strong></p>
+</blockquote>
+<blockquote>
+<p>以这种方式自定义解决方案生成将仅适用于带有 MSBuild.exe 的命令行生成  。 它不适用于 Visual Studio 中的生成  。</p>
+</blockquote>
+<p>当 MSBuild 生成解决方案文件时，它首先在内部转换为项目文件，然后再生成它。 已生成的项目文件在定义任何目标前导入 <code>before.{solutionname}.sln.targets</code>，在导入目标后导入 <code>after.{solutionname}.sln.targets</code> ，其中包括安装到 <code>$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportBefore</code> 和 <code>$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\SolutionFile\ImportAfter</code> 目录的目标。</p>
+<p>例如，可以在包含以下内容的名为 after.MyCustomizedSolution.sln.targets 的相同目录中创建文件，从而定义在生成 MyCustomizedSolution.sln 后写自定义日志消息的新目标  </p>
+<pre class=" language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Project</span><span class="token punctuation">></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Target</span> <span class="token attr-name">Name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>EmitCustomMessage<span class="token punctuation">"</span></span> <span class="token attr-name">AfterTargets</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Build<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Message</span> <span class="token attr-name">Importance</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>High<span class="token punctuation">"</span></span> <span class="token attr-name">Text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>The solution has completed the Build target<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Target</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Project</span><span class="token punctuation">></span></span></code></pre>
+<h2 id="自定义所有-NET-生成"><a href="#自定义所有-NET-生成" class="headerlink" title="自定义所有 .NET 生成"></a>自定义所有 .NET 生成</h2><p>维护生成服务器时，可能需要为服务器上的所有生成全局配置 MSBuild 设置。  原则上，可以修改全局 Microsoft.Common.Targets  或 Microsoft.Common.Props  文件，但有一种更好的方法。 可以通过使用特定的 MSBuild 属性并添加某些自定义 <code>.targets</code> 和 <code>.props</code> 文件，来影响特定项目类型的所有生成（如所有 C# 项目）。</p>
+<p>若要影响通过安装 MSBuild 或 Visual Studio 控制的所有 C# 或 Visual Basic 的生成，请创建 Custom.Before.Microsoft.Common.Targets  或 Custom.After.Microsoft.Common.Targets  文件（其目标将在 Microsoft.Common.targets  之前或之后运行），或创建 Custom.Before.Microsoft.Common.Props 或 Custom.After.Microsoft.Common.Props 文件    （将在 Microsoft.Common.props 之前或之后进行处理其属性）。</p>
+<p>可以使用以下 MSBuild 属性指定这些文件的位置：</p>
+<ul>
+<li>CustomBeforeMicrosoftCommonProps</li>
+<li>CustomBeforeMicrosoftCommonTargets</li>
+<li>CustomAfterMicrosoftCommonProps</li>
+<li>CustomAfterMicrosoftCommonTargets</li>
+<li>CustomBeforeMicrosoftCSharpProps</li>
+<li>CustomBeforeMicrosoftVisualBasicProps</li>
+<li>CustomAfterMicrosoftCSharpProps</li>
+<li>CustomAfterMicrosoftVisualBasicProps</li>
+<li>CustomBeforeMicrosoftCSharpTargets</li>
+<li>CustomBeforeMicrosoftVisualBasicTargets</li>
+<li>CustomAfterMicrosoftCSharpTargets</li>
+<li>CustomAfterMicrosoftVisualBasicTargets</li>
+</ul>
+<p>这些属性的通用  版本都会影响 C# 和 Visual Basic 项目。 可以在 MSBuild 命令行中设置这些属性。</p>
+<pre class=" language-cmd"><code class="language-cmd">msbuild /p:CustomBeforeMicrosoftCommonTargets="C:\build\config\Custom.Before.Microsoft.Common.Targets" MyProject.csproj</code></pre>
+<p>可以针对不同的应用场景使用最适合的方法。 如果你有一个专用的生成服务器，并且需要确保特定目标始终在该服务器上执行的相应项目类型的所有生成上执行，则适合使用全局自定义 <code>.targets</code> 或 <code>.props</code> 文件。  如果需要让自定义目标仅在某些条件适用时执行，可使用其他文件位置，并（仅在需要时）通过在 MSBuild 命令行中设置相应的 MSBuild 属性设置该文件的路径。</p>
+<blockquote>
+<p><strong>警告⚠</strong></p>
+</blockquote>
+<blockquote>
+<p>每当 Visual Studio 生成匹配类型的任何项目时，只要它能在 MSBuild 文件夹中找到自定义文件 <code>.targets</code> 或 <code>.props</code>，就能使用它们。 这可能会带来意想不到的后果，如果操作不正确，可能会导致 Visual Studio 无法在你的计算机上进行生成。</p>
+</blockquote>
+</div><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>睡五百年可好</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="http://uncmd.github.io/share/customize-your-build/" title="MSBuild自定义生成">http://uncmd.github.io/share/customize-your-build/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></section></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/share/self-docker-registry/" rel="prev" title="Linux 部署 .NET Core（搭建私有镜像仓库）"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">Linux 部署 .NET Core（搭建私有镜像仓库）</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/share/linux-netcore-docker/" rel="next" title="Linux 部署 .NET Core（容器部署）"><span class="post-nav-text">Linux 部署 .NET Core（容器部署）</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div id="comment"><div class="comment-tooltip text-center"><span>若您无 GitHub 账号，可直接在下方匿名评论。</span><br><span>若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。</span><br><span>若没有本文 Issue，您可以使用 Comment 模版新建。</span><br><a class="hty-button hty-button--raised" id="github-issues" href="https://github.com/uncmd/uncmd.github.io/issues?q=is:issue+MSBuild自定义生成" target="_blank" rel="noopener">GitHub Issues</a></div><div class="comment-container" id="valine-container"></div><script src="https://cdn.jsdelivr.net/npm/valine@latest/dist/Valine.min.js"></script><script>function initValine() {
+  setTimeout(() => {
+    new Valine({
+      el: "#valine-container",
+      appId: '0npISzkBAUkOmtYd8T40Nb87-gzGzoHsz',
+      appKey: 'Kel97lPyFOFKrs3lN2MefL0P',
+      placeholder: '快来评论耶✌',
+      path: window.location.pathname,
+      avatar: '[object Object]',
+      meta: ["nick","mail","link"],
+      pageSize: 10,
+      lang: 'zh-cn',
+      visitor: true,
+      highlight: true,
+      recordIP: true,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: null,
+      enableQQ: true,
+      requiredFields: [],
+    });
+  }, 1000);
+}
+initValine();</script></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2019 – 2020 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> 睡五百年可好</span></div><div class="powered"><span>由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v4.2.1</span><span class="footer-separator">|</span><span>主题 - <a rel="noopener" href="https://github.com/YunYouJun/hexo-theme-yun" target="_blank"><span>Yun</span></a> v0.7.1</span></div><div class="live_time"><span>本博客已萌萌哒地运行</span><span id="display_live_time"></span><span class="moe-text">(●'◡'●)</span><script>function blog_live_time() {
+  window.setTimeout(blog_live_time, 1000);
+  const start = new Date('2020-05-12T00:00:00');
+  const now = new Date();
+  const timeDiff = (now.getTime() - start.getTime());
+  const msPerMinute = 60 * 1000;
+  const msPerHour = 60 * msPerMinute;
+  const msPerDay = 24 * msPerHour;
+  const passDay = Math.floor(timeDiff / msPerDay);
+  const passHour = Math.floor((timeDiff % msPerDay) / 60 / 60 / 1000);
+  const passMinute = Math.floor((timeDiff % msPerHour) / 60 / 1000);
+  const passSecond = Math.floor((timeDiff % msPerMinute) / 1000);
+  display_live_time.innerHTML = " " + passDay + " 天 " + passHour + " 小时 " + passMinute + " 分 " + passSecond + " 秒";
+}
+blog_live_time();
+</script></div></footer><a class="hty-icon-button" id="goUp" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#0078E7" stroke-width="2" stroke-linecap="round"></circle></svg></a></div><script defer src="/js/hexo-theme-yun.js"></script></body></html>
